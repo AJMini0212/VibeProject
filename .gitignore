@@ -1,0 +1,75 @@
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+lib/generated_plugin_registrant.dart
+*.iml
+*.lock
+
+# iOS/macOS
+ios/.symlinks/
+ios/.generated/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/GeneratedPluginRegistrant.*
+ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+ios/Pods/
+ios/Podfile.lock
+.DS_Store
+**/*.pbxuser
+**/*.mode1v3
+**/*.mode2v3
+**/*.perspectivev3
+**/*xcuserstate
+**/*.xcworkspace/xcuserdata/
+**/*.playground
+**/.symlinks/
+**/.generated/
+
+# Android
+android/local.properties
+android/GeneratedPluginRegistrant.java
+android/.gradle/
+android/app/debug
+android/app/profile
+android/app/release
+android/.idea/
+android/**/*.iml
+android/**/.gradle
+android/**/gradle-wrapper.jar
+android/**/local.properties
+key.properties
+key.jks
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+.gradle
+
+# API Keys and Secrets
+google-services.json
+GoogleService-Info.plist
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Project specific
+.planning/
+.claude/
