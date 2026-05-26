@@ -41,12 +41,15 @@ dependencies:
   # Dependency Injection
   get_it: ^7.6.0
 
-  # Local Storage (Phase 1: temporarily removed)
-  # hive: ^2.2.3
-  # hive_flutter: ^1.1.0
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
-  # Maps (Phase 1: temporarily removed)
-  # google_maps_flutter: ^2.5.0
+  # Maps
+  google_maps_flutter: ^2.5.0
+
+  # Location Services
+  location: ^5.0.0
 
   # Image Caching (Phase 1: temporarily removed)
   # cached_network_image: ^3.3.0
