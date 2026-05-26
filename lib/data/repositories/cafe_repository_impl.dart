@@ -1,43 +1,70 @@
 import '../../domain/entities/cafe.dart';
 import '../../domain/repositories/cafe_repository.dart';
+import '../datasources/cafe_local_datasource.dart';
+import '../datasources/naver_api_client.dart';
+import '../datasources/naver_place_converter.dart';
 import '../mappers/cafe_mapper.dart';
-import '../models/cafe_model.dart';
 
 class CafeRepositoryImpl implements CafeRepository {
+  final NaverApiClient naverApiClient;
+  final CafeLocalDatasource localDatasource;
+
+  CafeRepositoryImpl({
+    required this.naverApiClient,
+    required this.localDatasource,
+  });
+
   @override
   Future<List<Cafe>> searchCafes(
     double latitude,
     double longitude,
     String query,
   ) async {
-    // TODO: Phase 1.3에서 Naver API 호출로 구현
-    // 현재는 mock 데이터 반환
-    final mockData = [
-      CafeModel(
-        id: '1',
-        name: '카페 명불허전',
-        address: '서울시 강남구 테헤란로',
-        latitude: 37.4979,
-        longitude: 127.0276,
-        rating: 4.5,
-        reviewCount: 42,
-      ),
-      CafeModel(
-        id: '2',
-        name: '라떼 라이프',
-        address: '서울시 강남구 논현로',
-        latitude: 37.4968,
-        longitude: 127.0371,
-        rating: 4.3,
-        reviewCount: 28,
-      ),
-    ];
-    return CafeMapper.toDomainList(mockData);
+    try {
+      final normalizedQuery = query.isEmpty ? '카페' : query;
+
+      // 1. 캐시 확인 (TTL 유효한 경우)
+      final cached = await localDatasource.getCafes(
+        normalizedQuery,
+        latitude,
+        longitude,
+      );
+      if (cached != null) {
+        return CafeMapper.toDomainList(cached);
+      }
+
+      // 2. Naver API 호출
+      final navItems = await naverApiClient.searchPlaces(
+        query: normalizedQuery,
+        latitude: latitude,
+        longitude: longitude,
+      );
+
+      // 3. 응답을 모델로 변환
+      final models = NaverPlaceConverter.convertNaverListToModels(navItems);
+
+      // 4. 캐시에 저장
+      await localDatasource.saveCafes(normalizedQuery, latitude, longitude, models);
+
+      // 5. 엔티티로 변환 후 반환
+      return CafeMapper.toDomainList(models);
+    } catch (e) {
+      // 네트워크 오류 시 만료된 캐시라도 반환 (오프라인 지원)
+      final fallback = await localDatasource.getCafesWithoutExpiry(
+        query.isEmpty ? '카페' : query,
+        latitude,
+        longitude,
+      );
+      if (fallback != null) {
+        return CafeMapper.toDomainList(fallback);
+      }
+      rethrow;
+    }
   }
 
   @override
   Future<Cafe?> getCafeById(String id) async {
-    // TODO: Phase 1.3에서 구현
+    // TODO: Phase 1.4에서 구현
     return null;
   }
 }
