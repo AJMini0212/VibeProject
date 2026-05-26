@@ -63,11 +63,14 @@ dependencies:
   # Crypto
   crypto: ^3.0.0
 
-  # Firebase (Phase 2 - temporarily removed due to web compatibility)
-  # firebase_core: ^2.24.0
-  # firebase_auth: ^4.15.0
-  # cloud_firestore: ^4.14.0
-  # firebase_storage: ^11.5.0
+  # UUID
+  uuid: ^4.0.0
+
+  # Firebase (Phase 2)
+  firebase_core: ^2.24.0
+  firebase_auth: ^4.15.0
+  cloud_firestore: ^4.14.0
+  firebase_storage: ^11.5.0
 
 dev_dependencies:
   flutter_test:
