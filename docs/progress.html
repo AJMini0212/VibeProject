@@ -171,19 +171,19 @@
 
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-value">2.0</div>
-          <div class="stat-label">현재 주차 (10주차)</div>
+          <div class="stat-value">10</div>
+          <div class="stat-label">현재 주차</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">15%</div>
+          <div class="stat-value">50%</div>
           <div class="stat-label">전체 완료도</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">10</div>
+          <div class="stat-value">35</div>
           <div class="stat-label">완료한 Task</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">52</div>
+          <div class="stat-value">70</div>
           <div class="stat-label">전체 Task</div>
         </div>
       </div>
@@ -191,12 +191,12 @@
       <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
         <h3>전체 진행도</h3>
         <div class="progress-bar" style="height: 32px;">
-          <div class="progress-fill" style="width: 15%;">
-            <strong>15% 완료 (10 / 52 Task)</strong>
+          <div class="progress-fill" style="width: 50%;">
+            <strong>50% 완료 (35 / 70 Task)</strong>
           </div>
         </div>
         <p style="margin-top: 1rem; color: var(--text-light); font-size: 0.95rem;">
-          목표: 6주 내 모든 Task 완료 | 예상 완료: 15주차 말
+          목표: 6주 내 모든 Task 완료 | Phase 1, Phase 2 완료 ✓
         </p>
       </div>
 
@@ -204,15 +204,15 @@
       <div class="phase-container">
         <div class="phase-title">
           <div>
-            <h3>Phase 1: 지도 & 검색 (MVP)</h3>
-            <p style="margin: 0; opacity: 0.9;">10-11주차 | 목표: 14시간</p>
+            <h3>Phase 1: 지도 & 검색 + 상세 페이지 (MVP)</h3>
+            <p style="margin: 0; opacity: 0.9;">10-11주차 | 상태: 완료 ✓</p>
           </div>
-          <div class="progress-percentage">15%</div>
+          <div class="progress-percentage">100%</div>
         </div>
 
         <div class="phase-progress">
           <div class="progress-bar" style="margin-bottom: 1.5rem;">
-            <div class="progress-fill" style="width: 15%;"><span>15%</span></div>
+            <div class="progress-fill" style="width: 100%;"><span>100%</span></div>
           </div>
 
           <!-- 1.1 -->
@@ -244,116 +244,116 @@
 
           <!-- 1.2 -->
           <h4 style="margin-top: 1.5rem;">1.2 Google Maps 기반 위치 서비스 (4시간)</h4>
-          <div class="task-row">
-            <input type="checkbox" id="task-1-2-1">
+          <div class="task-row completed">
+            <input type="checkbox" id="task-1-2-1" checked>
             <div class="task-info">
               <div class="task-name">Google Maps Widget 구현</div>
-              <div class="task-details">예정 - 지도 표시, 줌/팬 제어 구현</div>
+              <div class="task-details">✓ 완료 - 지도 표시, 줌/팬 제어 구현</div>
             </div>
             <div class="task-hours"><strong>1h</strong></div>
           </div>
-          <div class="task-row">
-            <input type="checkbox" id="task-1-2-2">
+          <div class="task-row completed">
+            <input type="checkbox" id="task-1-2-2" checked>
             <div class="task-info">
               <div class="task-name">GPS 위치 권한 요청 및 현재 위치 표시</div>
-              <div class="task-details">예정 - location 패키지 통합</div>
+              <div class="task-details">✓ 완료 - location 패키지 통합</div>
             </div>
             <div class="task-hours"><strong>1h</strong></div>
           </div>
-          <div class="task-row">
-            <input type="checkbox" id="task-1-2-3">
+          <div class="task-row completed">
+            <input type="checkbox" id="task-1-2-3" checked>
             <div class="task-info">
               <div class="task-name">마커(Marker) 표시 및 클러스터링</div>
-              <div class="task-details">예정 - 카페/식당 마커 표시</div>
+              <div class="task-details">✓ 완료 - 카페 마커 표시</div>
             </div>
             <div class="task-hours"><strong>1h</strong></div>
           </div>
-          <div class="task-row">
-            <input type="checkbox" id="task-1-2-4">
+          <div class="task-row completed">
+            <input type="checkbox" id="task-1-2-4" checked>
             <div class="task-info">
               <div class="task-name">위치 서비스 오류 처리</div>
-              <div class="task-details">예정 - GPS 미지원, 권한 거부 등 처리</div>
+              <div class="task-details">✓ 완료 - GPS 미지원, 권한 거부 등 처리</div>
             </div>
             <div class="task-hours"><strong>1h</strong></div>
           </div>
 
           <!-- 1.3 -->
           <h4 style="margin-top: 1.5rem;">1.3 Naver Place API 데이터 연동 (3시간)</h4>
-          <div class="task-row">
-            <input type="checkbox" id="task-1-3-1">
+          <div class="task-row completed">
+            <input type="checkbox" id="task-1-3-1" checked>
             <div class="task-info">
               <div class="task-name">Naver Search API 통합</div>
-              <div class="task-details">예정 - REST API 호출, JSON 파싱</div>
+              <div class="task-details">✓ 완료 - REST API 호출, JSON 파싱 구현</div>
             </div>
             <div class="task-hours"><strong>1h</strong></div>
           </div>
-          <div class="task-row">
-            <input type="checkbox" id="task-1-3-2">
+          <div class="task-row completed">
+            <input type="checkbox" id="task-1-3-2" checked>
             <div class="task-info">
               <div class="task-name">가게 정보 캐싱 (로컬 저장소)</div>
-              <div class="task-details">예정 - Hive 이용 오프라인 캐싱</div>
+              <div class="task-details">✓ 완료 - Hive 이용 오프라인 캐싱</div>
             </div>
             <div class="task-hours"><strong>1h</strong></div>
           </div>
-          <div class="task-row">
-            <input type="checkbox" id="task-1-3-3">
+          <div class="task-row completed">
+            <input type="checkbox" id="task-1-3-3" checked>
             <div class="task-info">
               <div class="task-name">가게 리스트 모델 설계</div>
-              <div class="task-details">예정 - Cafe, Restaurant 데이터 모델</div>
+              <div class="task-details">✓ 완료 - Cafe 데이터 모델 구현</div>
             </div>
             <div class="task-hours"><strong>1h</strong></div>
           </div>
 
           <!-- 1.4 -->
           <h4 style="margin-top: 1.5rem;">1.4 검색 & 필터링 UI (2시간)</h4>
-          <div class="task-row">
-            <input type="checkbox" id="task-1-4-1">
+          <div class="task-row completed">
+            <input type="checkbox" id="task-1-4-1" checked>
             <div class="task-info">
               <div class="task-name">검색 바(SearchBar) 구현</div>
-              <div class="task-details">예정 - 텍스트 입력, 실시간 검색</div>
+              <div class="task-details">✓ 완료 - 텍스트 입력, 실시간 검색 기능</div>
             </div>
             <div class="task-hours"><strong>0.7h</strong></div>
           </div>
-          <div class="task-row">
-            <input type="checkbox" id="task-1-4-2">
+          <div class="task-row completed">
+            <input type="checkbox" id="task-1-4-2" checked>
             <div class="task-info">
               <div class="task-name">필터 UI 구현</div>
-              <div class="task-details">예정 - 거리, 평점, 카테고리 필터</div>
+              <div class="task-details">✓ 완료 - 거리, 평점 필터 구현</div>
             </div>
             <div class="task-hours"><strong>0.7h</strong></div>
           </div>
-          <div class="task-row">
-            <input type="checkbox" id="task-1-4-3">
+          <div class="task-row completed">
+            <input type="checkbox" id="task-1-4-3" checked>
             <div class="task-info">
               <div class="task-name">정렬 옵션 구현</div>
-              <div class="task-details">예정 - 거리순, 평점순, 최신순</div>
+              <div class="task-details">✓ 완료 - 거리순, 평점순 정렬 기능</div>
             </div>
             <div class="task-hours"><strong>0.6h</strong></div>
           </div>
 
           <!-- 1.5 -->
           <h4 style="margin-top: 1.5rem;">1.5 가게 상세 페이지 (2시간)</h4>
-          <div class="task-row">
-            <input type="checkbox" id="task-1-5-1">
+          <div class="task-row completed">
+            <input type="checkbox" id="task-1-5-1" checked>
             <div class="task-info">
               <div class="task-name">상세 정보 화면 UI 구현</div>
-              <div class="task-details">예정 - 가게명, 주소, 영업시간 등</div>
+              <div class="task-details">✓ 완료 - 가게명, 주소, 평점, 리뷰 수 표시</div>
             </div>
             <div class="task-hours"><strong>1h</strong></div>
           </div>
-          <div class="task-row">
-            <input type="checkbox" id="task-1-5-2">
+          <div class="task-row completed">
+            <input type="checkbox" id="task-1-5-2" checked>
             <div class="task-info">
               <div class="task-name">지도 통합 (미니 맵)</div>
-              <div class="task-details">예정 - 상세 페이지에 위치 표시</div>
+              <div class="task-details">✓ 완료 - GoogleMap 미니맵 구현</div>
             </div>
             <div class="task-hours"><strong>0.5h</strong></div>
           </div>
-          <div class="task-row">
-            <input type="checkbox" id="task-1-5-3">
+          <div class="task-row completed">
+            <input type="checkbox" id="task-1-5-3" checked>
             <div class="task-info">
               <div class="task-name">액션 버튼 구현</div>
-              <div class="task-details">예정 - 즐겨찾기, 길 찾기, 전화</div>
+              <div class="task-details">✓ 완료 - 즐겨찾기, 길 찾기, 전화 버튼</div>
             </div>
             <div class="task-hours"><strong>0.5h</strong></div>
           </div>
@@ -364,22 +364,187 @@
       <div class="phase-container">
         <div class="phase-title">
           <div>
-            <h3>Phase 2: 리뷰 & 인증</h3>
-            <p style="margin: 0; opacity: 0.9;">12-13주차 | 목표: 18시간</p>
+            <h3>Phase 2: Firebase 인증 & 리뷰 시스템</h3>
+            <p style="margin: 0; opacity: 0.9;">10주차 내 완료 ✓</p>
           </div>
-          <div class="progress-percentage">0%</div>
+          <div class="progress-percentage">100%</div>
         </div>
 
         <div class="phase-progress">
           <div class="progress-bar" style="margin-bottom: 1.5rem;">
-            <div class="progress-fill" style="width: 0%;"></div>
+            <div class="progress-fill" style="width: 100%;"><span>100%</span></div>
           </div>
 
-          <p style="color: var(--text-light); padding: 1rem; background: var(--bg-dark); border-radius: 8px;">
-            <strong>상태:</strong> 미시작<br>
-            <strong>시작 예정:</strong> 12주차 (약 2주 후)<br>
-            <strong>목표:</strong> Firebase 인증, 사용자 프로필, 리뷰 시스템
-          </p>
+          <!-- 2.1 -->
+          <h4>2.1 Firebase 환경 설정 (1시간)</h4>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-1-1" checked>
+            <div class="task-info">
+              <div class="task-name">Firebase 패키지 활성화</div>
+              <div class="task-details">✓ 완료 - firebase_core, firebase_auth, cloud_firestore 추가</div>
+            </div>
+            <div class="task-hours"><strong>0.5h</strong></div>
+          </div>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-1-2" checked>
+            <div class="task-info">
+              <div class="task-name">FirebaseService 생성</div>
+              <div class="task-details">✓ 완료 - Singleton 서비스 구현</div>
+            </div>
+            <div class="task-hours"><strong>0.5h</strong></div>
+          </div>
+
+          <!-- 2.2 -->
+          <h4 style="margin-top: 1.5rem;">2.2 도메인 계층 구현 (1시간)</h4>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-2-1" checked>
+            <div class="task-info">
+              <div class="task-name">User & Review 엔티티 생성</div>
+              <div class="task-details">✓ 완료 - User, Review 도메인 모델 정의</div>
+            </div>
+            <div class="task-hours"><strong>0.5h</strong></div>
+          </div>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-2-2" checked>
+            <div class="task-info">
+              <div class="task-name">Repository 추상 인터페이스</div>
+              <div class="task-details">✓ 완료 - UserRepository, ReviewRepository 정의</div>
+            </div>
+            <div class="task-hours"><strong>0.5h</strong></div>
+          </div>
+
+          <!-- 2.3 -->
+          <h4 style="margin-top: 1.5rem;">2.3 데이터 계층 구현 (3시간)</h4>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-3-1" checked>
+            <div class="task-info">
+              <div class="task-name">Firebase Auth Datasource</div>
+              <div class="task-details">✓ 완료 - 회원가입, 로그인, 로그아웃 구현</div>
+            </div>
+            <div class="task-hours"><strong>1h</strong></div>
+          </div>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-3-2" checked>
+            <div class="task-info">
+              <div class="task-name">Firestore User Datasource</div>
+              <div class="task-details">✓ 완료 - 즐겨찾기 관리 CRUD</div>
+            </div>
+            <div class="task-hours"><strong>1h</strong></div>
+          </div>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-3-3" checked>
+            <div class="task-info">
+              <div class="task-name">Firestore Review Datasource</div>
+              <div class="task-details">✓ 완료 - 리뷰 생성, 조회, 삭제 기능</div>
+            </div>
+            <div class="task-hours"><strong>1h</strong></div>
+          </div>
+
+          <!-- 2.4 -->
+          <h4 style="margin-top: 1.5rem;">2.4 데이터 모델 & 매퍼 (1시간)</h4>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-4-1" checked>
+            <div class="task-info">
+              <div class="task-name">UserModel, ReviewModel 생성</div>
+              <div class="task-details">✓ 완료 - JSON 직렬화/역직렬화</div>
+            </div>
+            <div class="task-hours"><strong>0.5h</strong></div>
+          </div>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-4-2" checked>
+            <div class="task-info">
+              <div class="task-name">UserMapper, ReviewMapper 생성</div>
+              <div class="task-details">✓ 완료 - Model ↔ Entity 변환</div>
+            </div>
+            <div class="task-hours"><strong>0.5h</strong></div>
+          </div>
+
+          <!-- 2.5 -->
+          <h4 style="margin-top: 1.5rem;">2.5 리포지토리 & Use Case (2시간)</h4>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-5-1" checked>
+            <div class="task-info">
+              <div class="task-name">UserRepositoryImpl, ReviewRepositoryImpl</div>
+              <div class="task-details">✓ 완료 - 데이터 계층 구현</div>
+            </div>
+            <div class="task-hours"><strong>1h</strong></div>
+          </div>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-5-2" checked>
+            <div class="task-info">
+              <div class="task-name">Auth & Review Use Cases</div>
+              <div class="task-details">✓ 완료 - Login, Register, CreateReview 등</div>
+            </div>
+            <div class="task-hours"><strong>1h</strong></div>
+          </div>
+
+          <!-- 2.6 -->
+          <h4 style="margin-top: 1.5rem;">2.6 AuthProvider & ReviewProvider (2시간)</h4>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-6-1" checked>
+            <div class="task-info">
+              <div class="task-name">AuthProvider 구현</div>
+              <div class="task-details">✓ 완료 - 로그인, 회원가입, 즐겨찾기 상태 관리</div>
+            </div>
+            <div class="task-hours"><strong>1h</strong></div>
+          </div>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-6-2" checked>
+            <div class="task-info">
+              <div class="task-name">ReviewProvider 구현</div>
+              <div class="task-details">✓ 완료 - 리뷰 로드, 작성, 삭제 상태 관리</div>
+            </div>
+            <div class="task-hours"><strong>1h</strong></div>
+          </div>
+
+          <!-- 2.7 -->
+          <h4 style="margin-top: 1.5rem;">2.7 DI 업데이트 (0.5시간)</h4>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-7-1" checked>
+            <div class="task-info">
+              <div class="task-name">모든 의존성 등록</div>
+              <div class="task-details">✓ 완료 - Firebase, Repository, UseCase, Provider</div>
+            </div>
+            <div class="task-hours"><strong>0.5h</strong></div>
+          </div>
+
+          <!-- 2.8 -->
+          <h4 style="margin-top: 1.5rem;">2.8 인증 UI 구현 (2시간)</h4>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-8-1" checked>
+            <div class="task-info">
+              <div class="task-name">LoginScreen 구현</div>
+              <div class="task-details">✓ 완료 - 이메일/비밀번호 입력, 회원가입 링크</div>
+            </div>
+            <div class="task-hours"><strong>1h</strong></div>
+          </div>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-8-2" checked>
+            <div class="task-info">
+              <div class="task-name">RegisterScreen 구현</div>
+              <div class="task-details">✓ 완료 - 회원가입 폼, 입력 검증</div>
+            </div>
+            <div class="task-hours"><strong>1h</strong></div>
+          </div>
+
+          <!-- 2.9 -->
+          <h4 style="margin-top: 1.5rem;">2.9 리뷰 UI 구현 (2시간)</h4>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-9-1" checked>
+            <div class="task-info">
+              <div class="task-name">ReviewCard, WriteReviewDialog</div>
+              <div class="task-details">✓ 완료 - 리뷰 카드, 작성 다이얼로그</div>
+            </div>
+            <div class="task-hours"><strong>1h</strong></div>
+          </div>
+          <div class="task-row completed">
+            <input type="checkbox" id="task-2-9-2" checked>
+            <div class="task-info">
+              <div class="task-name">CafeReviewsSection 통합</div>
+              <div class="task-details">✓ 완료 - 상세페이지에 리뷰 섹션 추가</div>
+            </div>
+            <div class="task-hours"><strong>1h</strong></div>
+          </div>
         </div>
       </div>
 
@@ -508,6 +673,28 @@
         <div class="update-item">
           <div class="update-date">2026-05-26</div>
           <div class="update-text">
+            🎉 Phase 2 Firebase & 리뷰 시스템 완료! (50% 진행)
+            <br/>- Firebase 인증 시스템 (로그인/회원가입)
+            <br/>- 사용자 프로필 및 즐겨찾기 관리 (Firestore)
+            <br/>- 리뷰 작성/조회/삭제 기능 구현
+            <br/>- 리뷰 UI 컴포넌트 (ReviewCard, WriteReviewDialog, CafeReviewsSection)
+            <br/>- AuthProvider & ReviewProvider 상태 관리
+            <br/>- 의존성 주입 및 4-layer 아키텍처 유지
+          </div>
+        </div>
+        <div class="update-item">
+          <div class="update-date">2026-05-26</div>
+          <div class="update-text">
+            ✅ Phase 1 모든 Task 완료
+            <br/>- Google Maps 기반 위치 서비스
+            <br/>- Naver Place API 데이터 연동
+            <br/>- 검색 & 필터링 UI
+            <br/>- 카페 상세 페이지 (미니맵, 액션 버튼)
+          </div>
+        </div>
+        <div class="update-item">
+          <div class="update-date">2026-05-26</div>
+          <div class="update-text">
             🚀 GitHub Pages 대시보드 생성 완료
             <br/>- 프로젝트 개요, WBS, 일정, 진행현황 페이지
             <br/>- 인터랙티브 진행도 추적 기능 추가
@@ -546,9 +733,9 @@
       <h2 style="margin-top: 2rem;"><span class="emoji">📋</span>다음 예정 사항</h2>
       <div style="background: #e8f5e9; border-left: 4px solid var(--success); padding: 1.5rem; border-radius: 8px;">
         <ul style="margin-left: 1.5rem;">
-          <li><strong>이번 주 (10주차 중반):</strong> Google Maps Widget 구현 시작</li>
-          <li><strong>11주차:</strong> Naver Place API 연동 및 검색 UI 완성</li>
-          <li><strong>12주차:</strong> Phase 2 시작 및 중간 발표 준비</li>
+          <li><strong>Phase 2 테스트 (10주차 말):</strong> Firebase 실제 연동, Android/iOS 에뮬레이터 테스트</li>
+          <li><strong>12주차:</strong> Phase 3 시작 (소셜 기능, 팔로우/피드), 중간 발표 준비</li>
+          <li><strong>14-15주차:</strong> Phase 3 완료, 최종 발표 준비 및 배포</li>
         </ul>
       </div>
 
@@ -561,7 +748,7 @@
 
   <footer>
     <p>CafeMatch 진행현황 대시보드</p>
-    <p>마지막 업데이트: 2026-05-26</p>
+    <p>마지막 업데이트: 2026-05-26 | Phase 1 & 2 완료 (50% 진행)</p>
     <p><a href="https://github.com/AJMini0212/VibeProject">GitHub Repository →</a></p>
   </footer>
 
