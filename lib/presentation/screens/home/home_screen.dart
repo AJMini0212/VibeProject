@@ -5,6 +5,7 @@ import '../../providers/home_provider.dart';
 import 'widgets/map_widget.dart';
 import 'widgets/filter_panel.dart';
 import 'widgets/active_filters_bar.dart';
+import '../cafe_detail/cafe_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -189,8 +190,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   void _showCafeDetail(Cafe cafe) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('${cafe.name} 선택됨')),
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CafeDetailScreen(cafe: cafe),
+      ),
     );
   }
 }

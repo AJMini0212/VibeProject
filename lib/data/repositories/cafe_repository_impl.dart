@@ -2,7 +2,6 @@ import '../../domain/entities/cafe.dart';
 import '../../domain/repositories/cafe_repository.dart';
 import '../datasources/cafe_local_datasource.dart';
 import '../datasources/naver_api_client.dart';
-import '../datasources/naver_place_converter.dart';
 import '../mappers/cafe_mapper.dart';
 import '../models/cafe_model.dart';
 
