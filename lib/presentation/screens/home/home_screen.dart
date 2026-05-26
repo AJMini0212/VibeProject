@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:cafematch/domain/entities/cafe.dart';
 import '../../providers/home_provider.dart';
 import 'widgets/map_widget.dart';
+import 'widgets/filter_panel.dart';
+import 'widgets/active_filters_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -114,23 +116,75 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       return const Center(child: Text('카페를 찾을 수 없습니다'));
     }
 
-    return ListView.builder(
-      itemCount: provider.cafes.length,
-      itemBuilder: (context, index) {
-        final cafe = provider.cafes[index];
-        return Card(
-          margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-          child: ListTile(
-            title: Text(cafe.name),
-            subtitle: Text(cafe.address),
-            trailing: Chip(
-              label: Text('⭐ ${cafe.rating}'),
-              backgroundColor: Colors.brown[100],
-            ),
-            onTap: () => _showCafeDetail(cafe),
+    final filteredCafes = provider.filteredCafes;
+
+    return Column(
+      children: [
+        // 필터 패널
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              FilterPanel(
+                onClearFilters: () {},
+              ),
+              const ActiveFiltersBar(),
+            ],
           ),
-        );
-      },
+        ),
+
+        // 결과 개수 표시
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Text(
+            '총 ${provider.cafes.length}개 중 ${filteredCafes.length}개 카페 찾음',
+            style: TextStyle(
+              fontSize: 13,
+              color: Colors.grey[600],
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+
+        // 카페 리스트
+        Expanded(
+          child: filteredCafes.isEmpty
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.search_off,
+                        size: 48,
+                        color: Colors.grey,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        '검색 결과가 없습니다',
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: filteredCafes.length,
+                  itemBuilder: (context, index) {
+                    final cafe = filteredCafes[index];
+                    return Card(
+                      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      child: ListTile(
+                        title: Text(cafe.name),
+                        subtitle: Text(cafe.address),
+                        trailing: Chip(
+                          label: Text('⭐ ${cafe.rating}'),
+                          backgroundColor: Colors.brown[100],
+                        ),
+                        onTap: () => _showCafeDetail(cafe),
+                      ),
+                    );
+                  },
+                ),
+        ),
+      ],
     );
   }
 
