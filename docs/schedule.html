@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>프로젝트 일정 - CafeMatch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📅 프로젝트 일정 & 위험 관리</h1>
+    <p>CafeMatch - 6주 개발 일정</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">📊 개요</a></li>
+      <li><a href="wbs.html">📋 WBS</a></li>
+      <li><a href="schedule.html" class="active">📅 일정</a></li>
+      <li><a href="progress.html">📈 진행현황</a></li>
+      <li><a href="https://github.com/AJMini0212/VibeProject" target="_blank">🔗 GitHub</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+      <h2><span class="emoji">📊</span>프로젝트 개요</h2>
+      <div class="stats">
+        <div class="stat-box">
+          <div class="stat-number">6</div>
+          <div class="stat-label">개발 주차</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">60-70</div>
+          <div class="stat-label">총 개발 시간</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">10-15</div>
+          <div class="stat-label">주당 투자 시간</div>
+        </div>
+      </div>
+
+      <!-- Week 10 -->
+      <div style="border-top: 3px solid var(--primary); margin-top: 2rem; padding-top: 1rem;">
+        <h2 style="border-left: 4px solid var(--success);">📌 10주차: Phase 1 시작 - 지도 & 기본 검색</h2>
+
+        <div class="phase-description">
+          <strong>주제:</strong> Flutter 프로젝트 초기화 및 Google Maps 통합<br>
+          <strong>목표 달성도:</strong> <div class="progress-bar" style="margin-top: 0.5rem;"><div class="progress-fill" style="width: 15%;"><span>15%</span></div></div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>내용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>목표</strong></td>
+              <td>
+                ✅ Flutter 프로젝트 구조 완성<br>
+                ✅ Google Maps 기본 기능 동작<br>
+                ✅ GPS 위치 권한 처리 완료
+              </td>
+            </tr>
+            <tr>
+              <td><strong>주요 작업</strong></td>
+              <td>
+                1. Flutter 프로젝트 생성 및 pubspec.yaml 설정<br>
+                2. Google Maps API 키 발급 (Android/iOS)<br>
+                3. Location 패키지 통합<br>
+                4. 현재 위치 표시 기능<br>
+                5. 에뮬레이터/실제 기기 테스트
+              </td>
+            </tr>
+            <tr>
+              <td><strong>산출물</strong></td>
+              <td>
+                • 완성된 Flutter 프로젝트 (GitHub 커밋)<br>
+                • Google Maps 표시 화면 (스크린샷)<br>
+                • 개발 환경 설정 가이드 (DEVELOPMENT.md)
+              </td>
+            </tr>
+            <tr>
+              <td><strong>검증 방법</strong></td>
+              <td>
+                ✓ 에뮬레이터에서 지도 렌더링 확인<br>
+                ✓ 현재 위치 권한 요청 & 표시<br>
+                ✓ 줌/팬 제어 정상 동작<br>
+                ✓ 콘솔 에러 없음
+              </td>
+            </tr>
+            <tr>
+              <td><strong>예상 시간</strong></td>
+              <td><span class="badge badge-info">12-14시간</span></td>
+            </tr>
+            <tr style="background: #fff3e0;">
+              <td><strong>⚠️ 위험 요소</strong></td>
+              <td>
+                • iOS/Android API 키 설정 오류<br>
+                • 권한 요청 안 됨 (특히 iOS)<br>
+                → 대응: 공식 문서 참고, 에뮬레이터 다시 시작
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Week 11 -->
+      <div style="border-top: 3px solid var(--primary); margin-top: 2rem; padding-top: 1rem;">
+        <h2 style="border-left: 4px solid var(--success);">📌 11주차: Phase 1 계속 - Naver API & 검색</h2>
+
+        <div class="phase-description">
+          <strong>주제:</strong> 실제 가게 데이터 연동 및 검색/필터링 UI<br>
+          <strong>기간:</strong> 2차 개발
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>내용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>목표</strong></td>
+              <td>
+                ✅ Naver Place API 연동 완료<br>
+                ✅ 지도에 가게 마커 500개+ 표시<br>
+                ✅ 검색 & 필터링 기능 동작
+              </td>
+            </tr>
+            <tr>
+              <td><strong>주요 작업</strong></td>
+              <td>
+                1. Naver Search API 연동<br>
+                2. 가게 데이터 파싱 (Cafe, Restaurant 모델)<br>
+                3. Hive를 이용한 로컬 캐싱<br>
+                4. 검색 바 구현 (debouncing)<br>
+                5. 필터 UI (거리, 평점, 카테고리)<br>
+                6. 가게 상세 페이지 기본 구현
+              </td>
+            </tr>
+            <tr>
+              <td><strong>산출물</strong></td>
+              <td>
+                • 완성된 Naver API 통합 코드<br>
+                • 검색 & 필터링 화면 (스크린샷)<br>
+                • 가게 데이터 모델 (models/cafe.dart)<br>
+                • API 통합 가이드 (API.md)
+              </td>
+            </tr>
+            <tr>
+              <td><strong>검증 방법</strong></td>
+              <td>
+                ✓ 지도에 500개+ 마커 표시<br>
+                ✓ 검색어로 결과 필터링<br>
+                ✓ 필터 적용 시 마커 업데이트<br>
+                ✓ 로컬 캐싱 작동 확인<br>
+                ✓ 오프라인 상태에서 캐시된 데이터 로드
+              </td>
+            </tr>
+            <tr>
+              <td><strong>예상 시간</strong></td>
+              <td><span class="badge badge-info">12-14시간</span></td>
+            </tr>
+            <tr style="background: #fff3e0;">
+              <td><strong>⚠️ 위험 요소</strong></td>
+              <td>
+                • Naver API 일일 요청량 제한<br>
+                • 마커 500개 이상 성능 저하<br>
+                → 대응: API 캐싱 강화, 마커 클러스터링
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Week 12 -->
+      <div style="border-top: 3px solid var(--primary); margin-top: 2rem; padding-top: 1rem;">
+        <h2 style="border-left: 4px solid var(--warning);">📌 12주차: Phase 2 시작 + 중간 발표</h2>
+
+        <div class="phase-description">
+          <strong>주제:</strong> Firebase 인증 및 사용자 시스템 구축<br>
+          <strong>중요:</strong> 중간 발표 (12주차 말)
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>내용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>목표</strong></td>
+              <td>
+                ✅ Firebase 인증 시스템 완성<br>
+                ✅ 사용자 프로필 시스템 구현<br>
+                ✅ 리뷰 작성 기본 UI 완성<br>
+                ✅ 중간 발표 완료
+              </td>
+            </tr>
+            <tr>
+              <td><strong>주요 작업</strong></td>
+              <td>
+                1. Firebase 프로젝트 생성 & 설정<br>
+                2. 이메일/Google OAuth 로그인<br>
+                3. 사용자 프로필 Firestore 스키마 설계<br>
+                4. 프로필 화면 UI 구현<br>
+                5. 리뷰 데이터 모델 & Firestore 컬렉션<br>
+                6. 중간 발표 준비 (슬라이드, 데모 영상)
+              </td>
+            </tr>
+            <tr>
+              <td><strong>산출물</strong></td>
+              <td>
+                • Firebase 설정 가이드<br>
+                • 로그인/프로필 화면 (스크린샷)<br>
+                • Firestore 스키마 다이어그램<br>
+                • 중간 발표 슬라이드 (PPT)<br>
+                • 현황 리포트 (개발 진도 ~70%)
+              </td>
+            </tr>
+            <tr>
+              <td><strong>예상 시간</strong></td>
+              <td><span class="badge badge-warning">14-16시간</span></td>
+            </tr>
+            <tr style="background: #fff3e0;">
+              <td><strong>⚠️ 위험 요소</strong></td>
+              <td>
+                • Firebase 인증 설정 복잡성<br>
+                • 중간 발표 시간 압박<br>
+                → 대응: 일찍 시작, 발표 리허설
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Week 13 -->
+      <div style="border-top: 3px solid var(--primary); margin-top: 2rem; padding-top: 1rem;">
+        <h2 style="border-left: 4px solid var(--warning);">📌 13주차: Phase 2 계속 - 리뷰 & 이미지 처리</h2>
+
+        <div class="phase-description">
+          <strong>주제:</strong> 리뷰 시스템 완성 및 이미지 캐싱
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>내용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>목표</strong></td>
+              <td>
+                ✅ 리뷰 작성/조회 완성<br>
+                ✅ 이미지 처리 및 캐싱 완성<br>
+                ✅ Phase 2 통합 테스트
+              </td>
+            </tr>
+            <tr>
+              <td><strong>주요 작업</strong></td>
+              <td>
+                1. 리뷰 작성 폼 완성<br>
+                2. Firebase Storage 이미지 업로드<br>
+                3. Cached Network Image 통합<br>
+                4. 별점 위젯 구현<br>
+                5. 리뷰 목록 표시 및 정렬<br>
+                6. Phase 1, 2 통합 테스트
+              </td>
+            </tr>
+            <tr>
+              <td><strong>산출물</strong></td>
+              <td>
+                • 완성된 리뷰 시스템 코드<br>
+                • 리뷰/이미지 처리 화면 (스크린샷)<br>
+                • 성능 테스트 리포트<br>
+                • 13주차 진행 현황 (개발 진도 ~90%)
+              </td>
+            </tr>
+            <tr>
+              <td><strong>예상 시간</strong></td>
+              <td><span class="badge badge-warning">14-16시간</span></td>
+            </tr>
+            <tr style="background: #fff3e0;">
+              <td><strong>⚠️ 위험 요소</strong></td>
+              <td>
+                • 이미지 업로드 성능 이슈<br>
+                • Firebase Storage 비용 고려<br>
+                → 대응: 이미지 압축, 캐싱 최적화
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Week 14-15 -->
+      <div style="border-top: 3px solid var(--primary); margin-top: 2rem; padding-top: 1rem;">
+        <h2 style="border-left: 4px solid var(--error);">📌 14-15주차: Phase 3 - 소셜 & 배포</h2>
+
+        <div class="phase-description">
+          <strong>주제:</strong> 소셜 기능 구현 및 앱 배포<br>
+          <strong>중요:</strong> 최종 발표 (15주차 말)
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>내용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>목표</strong></td>
+              <td>
+                ✅ 팔로우/활동 피드 구현<br>
+                ✅ 리뷰 상호작용 (좋아요, 댓글)<br>
+                ✅ 성능 최적화 및 테스트<br>
+                ✅ Google Play/App Store 배포<br>
+                ✅ 최종 발표 완료
+              </td>
+            </tr>
+            <tr>
+              <td><strong>주요 작업</strong></td>
+              <td>
+                1. 팔로우/팔로워 시스템 구현<br>
+                2. 실시간 활동 피드 (Firestore 리스너)<br>
+                3. 좋아요/댓글 기능<br>
+                4. 성능 프로파일링 및 최적화<br>
+                5. 모든 기능 통합 테스트<br>
+                6. Google Play Console & App Store 설정<br>
+                7. 최종 발표 준비
+              </td>
+            </tr>
+            <tr>
+              <td><strong>산출물</strong></td>
+              <td>
+                • 완성된 앱 (모든 기능)<br>
+                • Google Play 스토어 링크<br>
+                • App Store 스토어 링크<br>
+                • 최종 발표 슬라이드<br>
+                • 사용자 가이드 (README)<br>
+                • 기술 문서 및 API 가이드
+              </td>
+            </tr>
+            <tr>
+              <td><strong>예상 시간</strong></td>
+              <td><span class="badge badge-info">20-24시간</span></td>
+            </tr>
+            <tr style="background: #fff3e0;">
+              <td><strong>⚠️ 위험 요소</strong></td>
+              <td>
+                • 배포 심사 기간 (1-3주)<br>
+                • 대량 사용자 동시 접속 시 성능 저하<br>
+                • 배포 후 버그 발견<br>
+                → 대응: 일찍 심사 신청, 부하 테스트, 배포 후 모니터링
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="margin-top: 2rem;"><span class="emoji">⚠️</span>전체 위험 관리</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>🔴 높은 위험</h3>
+          <ul style="margin-left: 1rem; margin-bottom: 0;">
+            <li>대량 마커 성능 저하</li>
+            <li>Firebase 비용 초과</li>
+            <li>배포 심사 거절</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🟡 중간 위험</h3>
+          <ul style="margin-left: 1rem; margin-bottom: 0;">
+            <li>API 요청 한도 초과</li>
+            <li>이미지 업로드 지연</li>
+            <li>실시간 피드 동기화 이슈</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🟢 낮은 위험</h3>
+          <ul style="margin-left: 1rem; margin-bottom: 0;">
+            <li>권한 요청 실패</li>
+            <li>UI 디자인 변경</li>
+            <li>문서화 지연</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 style="margin-top: 2rem;"><span class="emoji">💡</span>위험 대응 전략</h2>
+      <ul style="margin-left: 1.5rem;">
+        <li><strong>성능 이슈:</strong> 조기 성능 테스트, 마커 클러스터링, 페이지네이션</li>
+        <li><strong>API 제한:</strong> 캐싱 강화, 배치 처리, 요청 스케줄링</li>
+        <li><strong>배포 문제:</strong> 앱 리뷰 정책 숙지, 모의 심사, 피드백 대응 계획</li>
+        <li><strong>일정 지연:</strong> 예비 시간 활용, 범위 축소 (선택사항 제거)</li>
+      </ul>
+
+      <h2 style="margin-top: 2rem;"><span class="emoji">✅</span>마일스톤 체크리스트</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>마일스톤</th>
+            <th>기준</th>
+            <th>마감</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Phase 1 완료</strong></td>
+            <td>지도 + 검색 + 상세 페이지 동작</td>
+            <td>11주차 말</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 2 완료</strong></td>
+            <td>인증 + 리뷰 + 이미지 처리</td>
+            <td>13주차 말</td>
+          </tr>
+          <tr>
+            <td><strong>중간 발표</strong></td>
+            <td>Phase 1, 2 진행상황 발표</td>
+            <td>12주차 말</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 3 완료</strong></td>
+            <td>모든 기능 + 최적화 + 테스트</td>
+            <td>15주차 말</td>
+          </tr>
+          <tr>
+            <td><strong>배포</strong></td>
+            <td>Google Play + App Store 출시</td>
+            <td>15주차 이후</td>
+          </tr>
+          <tr>
+            <td><strong>최종 발표</strong></td>
+            <td>완성된 앱 + 기술 설명</td>
+            <td>15주차 말</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer>
+    <p>CafeMatch 프로젝트 일정</p>
+    <p>마지막 업데이트: 2026-05-26</p>
+    <p><a href="https://github.com/AJMini0212/VibeProject">GitHub Repository →</a></p>
+  </footer>
+</body>
+</html>

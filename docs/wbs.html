@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WBS - CafeMatch 프로젝트</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .wbs-tree {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .wbs-item {
+      margin-bottom: 0.5rem;
+      border-left: 2px solid var(--border);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .wbs-item.phase-1 {
+      border-left-color: var(--success);
+    }
+
+    .wbs-item.phase-2 {
+      border-left-color: var(--warning);
+    }
+
+    .wbs-item.phase-3 {
+      border-left-color: var(--error);
+    }
+
+    .wbs-toggle {
+      cursor: pointer;
+      user-select: none;
+      display: inline-block;
+      width: 20px;
+      text-align: center;
+      margin-left: -1.5rem;
+      position: absolute;
+      left: 0;
+    }
+
+    .wbs-content {
+      display: block;
+      font-weight: 500;
+    }
+
+    .wbs-item.collapsed > .wbs-content ~ ul {
+      display: none;
+    }
+
+    .wbs-item.task {
+      border-left: 1px solid var(--border);
+      padding-left: 1rem;
+      font-weight: normal;
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    .phase-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .phase-header h3 {
+      color: white;
+      margin-top: 0;
+      border: none;
+      padding: 0;
+    }
+
+    .wbs-hours {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-left: 1rem;
+    }
+
+    .phase-description {
+      background: var(--bg-dark);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      border-left: 3px solid var(--primary);
+    }
+
+    .sub-phase {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .sub-phase h4 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📋 WBS (Work Breakdown Structure)</h1>
+    <p>CafeMatch - 카페/식당 추천 앱 프로젝트 상세 계획</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">📊 개요</a></li>
+      <li><a href="wbs.html" class="active">📋 WBS</a></li>
+      <li><a href="schedule.html">📅 일정</a></li>
+      <li><a href="progress.html">📈 진행현황</a></li>
+      <li><a href="https://github.com/AJMini0212/VibeProject" target="_blank">🔗 GitHub</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+      <h2><span class="emoji">📊</span>전체 규모</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>기간</h3>
+          <p>6주 (10-15주차)</p>
+        </div>
+        <div class="card">
+          <h3>총 개발 시간</h3>
+          <p>약 60-70시간</p>
+        </div>
+        <div class="card">
+          <h3>주당 투자</h3>
+          <p>10-15시간</p>
+        </div>
+      </div>
+
+      <!-- Phase 1 -->
+      <div class="phase-header">
+        <h3>Phase 1: 지도 & 검색 (MVP)</h3>
+        <p>기간: 10-11주차 | 시간: 14시간</p>
+        <p style="margin-bottom: 0;">목표: 기본 검색과 브라우징 기능 완성</p>
+      </div>
+
+      <div class="sub-phase">
+        <h4>1.1 프로젝트 초기화 및 환경 구성 (3시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">✓ Flutter 프로젝트 생성 및 기본 구조 설계</li>
+          <li class="wbs-item task">✓ Google Maps API 설정 (iOS/Android)</li>
+          <li class="wbs-item task">✓ 개발 환경 테스트 (에뮬레이터/실제 기기)</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>1.2 Google Maps 기반 위치 서비스 (4시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ Google Maps Widget 구현 (지도 표시, 줌/팬 제어)</li>
+          <li class="wbs-item task">□ GPS 위치 권한 요청 및 현재 위치 표시</li>
+          <li class="wbs-item task">□ 마커(Marker) 표시 및 클러스터링</li>
+          <li class="wbs-item task">□ 위치 서비스 오류 처리</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>1.3 Naver Place API 데이터 연동 (3시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ Naver Search API 통합</li>
+          <li class="wbs-item task">□ 가게 정보 캐싱 (로컬 저장소)</li>
+          <li class="wbs-item task">□ 가게 리스트 모델 설계</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>1.4 검색 & 필터링 UI (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 검색 바(SearchBar) 구현</li>
+          <li class="wbs-item task">□ 필터 UI 구현 (거리, 평점, 카테고리)</li>
+          <li class="wbs-item task">□ 정렬 옵션 (거리순, 평점순, 최신순)</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>1.5 가게 상세 페이지 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 상세 정보 화면 UI 구현</li>
+          <li class="wbs-item task">□ 지도 통합 (상세 페이지에 미니 맵)</li>
+          <li class="wbs-item task">□ 액션 버튼 (즐겨찾기, 길 찾기, 전화)</li>
+        </ul>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase-header">
+        <h3>Phase 2: 리뷰 & 인증</h3>
+        <p>기간: 12주차 + 13주차 | 시간: 18시간</p>
+        <p style="margin-bottom: 0;">목표: 사용자 시스템과 리뷰 커뮤니티 구현</p>
+      </div>
+
+      <div class="sub-phase">
+        <h4>2.1 Firebase 초기 설정 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ Firebase 프로젝트 생성 및 설정</li>
+          <li class="wbs-item task">□ Flutter에 Firebase 통합</li>
+          <li class="wbs-item task">□ Firebase 권한 및 보안 규칙 설정</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>2.2 사용자 인증 시스템 (4시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ Firebase Authentication 통합</li>
+          <li class="wbs-item task">□ 로그인/회원가입 UI 구현</li>
+          <li class="wbs-item task">□ 세션 관리 (상태 유지)</li>
+          <li class="wbs-item task">□ 로그아웃 및 회원탈퇴</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>2.3 사용자 프로필 시스템 (3시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 사용자 프로필 모델 설계</li>
+          <li class="wbs-item task">□ Firestore에 사용자 정보 저장</li>
+          <li class="wbs-item task">□ 프로필 화면 UI 구현</li>
+          <li class="wbs-item task">□ 프로필 편집 기능</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>2.4 리뷰 작성/조회 시스템 (5시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 리뷰 데이터 모델 설계</li>
+          <li class="wbs-item task">□ 리뷰 작성 폼 UI</li>
+          <li class="wbs-item task">□ Firebase Storage에 이미지 저장</li>
+          <li class="wbs-item task">□ Firestore에 리뷰 저장</li>
+          <li class="wbs-item task">□ 리뷰 목록 조회 및 표시</li>
+          <li class="wbs-item task">□ 리뷰 수정/삭제 기능</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>2.5 평점 시스템 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 별점 위젯 구현</li>
+          <li class="wbs-item task">□ 평점 평균 계산 및 표시</li>
+          <li class="wbs-item task">□ 평점 분포 표시</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>2.6 이미지 처리 및 캐싱 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ Cached Network Image 패키지 통합</li>
+          <li class="wbs-item task">□ 이미지 압축 및 최적화</li>
+          <li class="wbs-item task">□ 이미지 갤러리 UI 구현</li>
+        </ul>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase-header">
+        <h3>Phase 3: 소셜 & 배포</h3>
+        <p>기간: 13-15주차 | 시간: 20시간+</p>
+        <p style="margin-bottom: 0;">목표: 커뮤니티 기능 완성 및 앱 배포</p>
+      </div>
+
+      <div class="sub-phase">
+        <h4>3.1 팔로우/팔로워 시스템 (3시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 팔로우 관계 데이터 모델</li>
+          <li class="wbs-item task">□ 팔로우/언팔로우 버튼 구현</li>
+          <li class="wbs-item task">□ 팔로워/팔로잉 목록 화면</li>
+          <li class="wbs-item task">□ 상호 팔로우 감지</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>3.2 활동 피드 (4시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 피드 데이터 모델 설계</li>
+          <li class="wbs-item task">□ 피드 화면 구현</li>
+          <li class="wbs-item task">□ 피드 실시간 업데이트</li>
+          <li class="wbs-item task">□ 피드 성능 최적화</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>3.3 사용자 검색 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 사용자 검색 기능</li>
+          <li class="wbs-item task">□ 사용자 검색 UI</li>
+          <li class="wbs-item task">□ 검색 결과에서 프로필 접근</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>3.4 리뷰 상호작용 (3시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 좋아요(Like) 기능</li>
+          <li class="wbs-item task">□ 댓글(Comment) 시스템</li>
+          <li class="wbs-item task">□ 좋아요/댓글 UI 구현</li>
+          <li class="wbs-item task">□ 알림 (선택사항)</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>3.5 클라우드 동기화 & 고급 필터 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 즐겨찾기 클라우드 동기화</li>
+          <li class="wbs-item task">□ 고급 필터 구현</li>
+          <li class="wbs-item task">□ 저장된 필터 (선택사항)</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>3.6 성능 최적화 (3시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 이미지 최적화</li>
+          <li class="wbs-item task">□ 지도 성능 최적화</li>
+          <li class="wbs-item task">□ Firestore 쿼리 최적화</li>
+          <li class="wbs-item task">□ 렌더링 성능 개선</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>3.7 UI/UX 폴란드 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 다크모드 지원</li>
+          <li class="wbs-item task">□ 로딩 상태 개선</li>
+          <li class="wbs-item task">□ 에러 처리 및 메시지</li>
+          <li class="wbs-item task">□ 애니메이션 추가</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>3.8 테스트 및 디버깅 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 기능 테스트 (수동)</li>
+          <li class="wbs-item task">□ 기기별 테스트</li>
+          <li class="wbs-item task">□ 성능 프로파일링</li>
+          <li class="wbs-item task">□ 보안 검토</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>3.9 앱 배포 준비 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ Google Play Console 설정</li>
+          <li class="wbs-item task">□ Apple App Store 설정</li>
+          <li class="wbs-item task">□ 앱 서명 및 빌드</li>
+          <li class="wbs-item task">□ 스토어 리스팅 최적화</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>3.10 배포 및 모니터링 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ Google Play 배포</li>
+          <li class="wbs-item task">□ App Store 배포</li>
+          <li class="wbs-item task">□ 배포 후 모니터링</li>
+          <li class="wbs-item task">□ 긴급 패치 준비</li>
+        </ul>
+      </div>
+
+      <!-- 공통 -->
+      <div class="phase-header" style="background: linear-gradient(135deg, #7c6b5e 0%, #6d5d52 100%);">
+        <h3>공통: 프로젝트 관리 & 문서화</h3>
+        <p>기간: 전체 | 시간: 8시간</p>
+      </div>
+
+      <div class="sub-phase">
+        <h4>4.1 프로젝트 기획 및 계획 수립 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">✓ 프로젝트 요구사항 분석</li>
+          <li class="wbs-item task">✓ WBS, 일정 수립</li>
+          <li class="wbs-item task">□ 위험 관리 계획</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>4.2 기술 문서 작성 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 개발 가이드 (DEVELOPMENT.md)</li>
+          <li class="wbs-item task">□ API 문서 (API.md)</li>
+          <li class="wbs-item task">□ 코드 스타일 가이드</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>4.3 중간/최종 발표 준비 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">□ 12주차 중간 발표 준비</li>
+          <li class="wbs-item task">□ 15주차 최종 발표 준비</li>
+        </ul>
+      </div>
+
+      <div class="sub-phase">
+        <h4>4.4 버전 관리 & 협업 (2시간)</h4>
+        <ul class="wbs-tree">
+          <li class="wbs-item task">✓ Git 저장소 관리</li>
+          <li class="wbs-item task">□ 변경 로그 관리 (CHANGELOG.md)</li>
+          <li class="wbs-item task">□ 릴리스 노트 작성</li>
+        </ul>
+      </div>
+
+      <h2><span class="emoji">📈</span>시간 분배 요약</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>영역</th>
+            <th>시간</th>
+            <th>비중</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-success">Phase 1</span></td>
+            <td>지도/검색</td>
+            <td>14시간</td>
+            <td>18%</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-warning">Phase 2</span></td>
+            <td>리뷰/인증</td>
+            <td>18시간</td>
+            <td>24%</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-info">Phase 3</span></td>
+            <td>소셜/배포</td>
+            <td>20시간+</td>
+            <td>27%</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-info">공통</span></td>
+            <td>관리/문서</td>
+            <td>8시간</td>
+            <td>11%</td>
+          </tr>
+          <tr style="font-weight: 600; background: var(--bg-dark);">
+            <td colspan="2">예비 시간</td>
+            <td>~8시간</td>
+            <td>~10%</td>
+          </tr>
+          <tr style="font-weight: 600; background: var(--bg-dark); border-top: 2px solid var(--border);">
+            <td colspan="2"><strong>합계</strong></td>
+            <td><strong>~68시간</strong></td>
+            <td><strong>100%</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2><span class="emoji">🔗</span>의존성 관계</h2>
+      <div style="background: var(--bg-dark); padding: 1.5rem; border-radius: 8px; border-left: 3px solid var(--warning);">
+        <p><strong>Phase 1 → Phase 2 → Phase 3</strong></p>
+        <ul style="margin-left: 1.5rem;">
+          <li>Phase 1의 70% 이상 완료 후 Phase 2 시작 가능</li>
+          <li>Phase 2는 Phase 1과 부분적으로 동시 진행 가능 (마지막 주에 통합)</li>
+          <li>Phase 3는 Phase 1, 2 완료 후 시작</li>
+          <li>배포는 Phase 3 + 테스트 & 최적화 완료 필요</li>
+        </ul>
+      </div>
+
+      <h2><span class="emoji">✅</span>품질 게이트 (Quality Gates)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>마일스톤</th>
+            <th>기준</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Phase 1 완료</strong></td>
+            <td>지도에서 가게 50개+ 표시, 검색 기능 정상</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 2 완료</strong></td>
+            <td>리뷰 5개+, 계정 생성 및 로그인 정상</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 3 완료</strong></td>
+            <td>팔로우 기능 정상, 피드 실시간 업데이트</td>
+          </tr>
+          <tr>
+            <td><strong>배포 준비</strong></td>
+            <td>크래시 0, 성능 지표 만족</td>
+          </tr>
+          <tr>
+            <td><strong>배포 완료</strong></td>
+            <td>스토어 출시, 모니터링 설정</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top: 2rem; color: var(--text-light); font-size: 0.95rem;">
+        <strong>범례:</strong> ✓ = 완료 | □ = 미완료 | ⚠️ = 진행 중
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <p>CafeMatch WBS - 상세 계획서</p>
+    <p>마지막 업데이트: 2026-05-26</p>
+    <p><a href="https://github.com/AJMini0212/VibeProject">GitHub Repository →</a></p>
+  </footer>
+</body>
+</html>

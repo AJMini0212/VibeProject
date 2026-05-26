@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CafeMatch - 프로젝트 대시보드</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>☕ CafeMatch</h1>
+    <p>취향으로 연결되고, 신뢰로 성장하는 미식 커뮤니티 플랫폼</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html" class="active">📊 개요</a></li>
+      <li><a href="wbs.html">📋 WBS</a></li>
+      <li><a href="schedule.html">📅 일정</a></li>
+      <li><a href="progress.html">📈 진행현황</a></li>
+      <li><a href="https://github.com/AJMini0212/VibeProject" target="_blank">🔗 GitHub</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+      <h2><span class="emoji">🎯</span>프로젝트 개요</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>📱 플랫폼</h3>
+          <p>Flutter (iOS/Android/Web)</p>
+        </div>
+        <div class="card">
+          <h3>⏱️ 개발 기간</h3>
+          <p>6주 (10-15주차)</p>
+        </div>
+        <div class="card">
+          <h3>💪 투자 시간</h3>
+          <p>60-70시간</p>
+        </div>
+        <div class="card">
+          <h3>👥 대상 사용자</h3>
+          <p>카페/식당을 즐기는 모든 사람</p>
+        </div>
+      </div>
+
+      <h2><span class="emoji">💡</span>핵심 목표</h2>
+      <ul class="task-list">
+        <li class="task-item">
+          <div class="task-content">
+            <div class="task-title">🔍 최고의 검색 경험 제공</div>
+            <div class="task-desc">Google Maps/Naver API를 통한 정확한 위치 정보와 빠른 검색</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-content">
+            <div class="task-title">⭐ 신뢰할 수 있는 리뷰 커뮤니티</div>
+            <div class="task-desc">팔로우 시스템으로 믿을 수 있는 리뷰어 발견 및 활동 실시간 확인</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-content">
+            <div class="task-title">💾 취향 저장 및 공유</div>
+            <div class="task-desc">즐겨찾기와 클라우드 동기화로 기기 간 데이터 동기화</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-content">
+            <div class="task-title">🚀 실무 기술 습득</div>
+            <div class="task-desc">Firebase, 이미지 처리, 상태 관리 및 성능 최적화</div>
+          </div>
+        </li>
+      </ul>
+
+      <h2><span class="emoji">📊</span>프로젝트 구조 (3단계)</h2>
+
+      <div class="stats">
+        <div class="stat-box">
+          <div class="stat-number">3</div>
+          <div class="stat-label">주요 Phase</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">52</div>
+          <div class="stat-label">상세 Task</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Sub Phase</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">~70</div>
+          <div class="stat-label">개발 시간</div>
+        </div>
+      </div>
+
+      <h2><span class="emoji">🎯</span>Phase별 개요</h2>
+
+      <div class="grid">
+        <div class="card">
+          <span class="phase-badge phase-1">Phase 1</span>
+          <h3>지도 & 검색 (MVP)</h3>
+          <p><strong>기간:</strong> 10-11주차</p>
+          <p><strong>시간:</strong> 14시간</p>
+          <p><strong>목표:</strong> 기본 검색과 브라우징 기능 완성</p>
+          <ul style="margin-left: 1rem; color: var(--text-light); font-size: 0.95rem;">
+            <li>Google Maps 통합</li>
+            <li>Naver Place API 연동</li>
+            <li>검색 & 필터링 UI</li>
+            <li>상세 페이지</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="phase-badge phase-2">Phase 2</span>
+          <h3>리뷰 & 인증</h3>
+          <p><strong>기간:</strong> 12-13주차</p>
+          <p><strong>시간:</strong> 18시간</p>
+          <p><strong>목표:</strong> 사용자 시스템과 리뷰 커뮤니티 구현</p>
+          <ul style="margin-left: 1rem; color: var(--text-light); font-size: 0.95rem;">
+            <li>Firebase 인증</li>
+            <li>사용자 프로필 시스템</li>
+            <li>리뷰 작성/조회</li>
+            <li>평점 및 이미지 처리</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="phase-badge phase-3">Phase 3</span>
+          <h3>소셜 & 배포</h3>
+          <p><strong>기간:</strong> 13-15주차</p>
+          <p><strong>시간:</strong> 20시간+</p>
+          <p><strong>목표:</strong> 커뮤니티 기능 완성 및 앱 배포</p>
+          <ul style="margin-left: 1rem; color: var(--text-light); font-size: 0.95rem;">
+            <li>팔로우/팔로워 시스템</li>
+            <li>활동 피드</li>
+            <li>리뷰 상호작용</li>
+            <li>배포 & 모니터링</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2><span class="emoji">📈</span>시간 분배</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>영역</th>
+            <th>시간</th>
+            <th>비중</th>
+            <th>진행도</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-success">Phase 1</span></td>
+            <td>지도/검색</td>
+            <td>14시간</td>
+            <td>18%</td>
+            <td>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 15%;"><span>15%</span></div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-warning">Phase 2</span></td>
+            <td>리뷰/인증</td>
+            <td>18시간</td>
+            <td>24%</td>
+            <td>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%;"><span>0%</span></div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-info">Phase 3</span></td>
+            <td>소셜/배포</td>
+            <td>20시간+</td>
+            <td>27%</td>
+            <td>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%;"><span>0%</span></div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-info">공통</span></td>
+            <td>관리/문서</td>
+            <td>8시간</td>
+            <td>11%</td>
+            <td>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 30%;"><span>30%</span></div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2><span class="emoji">🔗</span>의존성 관계</h2>
+      <p>각 Phase는 순차적으로 진행되며, Phase 1의 70% 이상 완료 후 Phase 2를 시작할 수 있습니다.</p>
+      <ul style="margin-left: 2rem;">
+        <li><strong>Phase 1 완료:</strong> 지도에서 가게 50개+ 표시, 검색 기능 정상</li>
+        <li><strong>Phase 2 완료:</strong> 리뷰 5개+, 계정 생성 및 로그인 정상</li>
+        <li><strong>Phase 3 완료:</strong> 팔로우 기능 정상, 피드 실시간 업데이트</li>
+        <li><strong>배포 준비:</strong> 크래시 0, 성능 지표 만족</li>
+      </ul>
+
+      <h2><span class="emoji">🛠️</span>주요 기술 스택</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Frontend</h3>
+          <ul style="margin-left: 1rem; margin-bottom: 0;">
+            <li>Flutter</li>
+            <li>Provider (상태관리)</li>
+            <li>Google Maps</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Backend</h3>
+          <ul style="margin-left: 1rem; margin-bottom: 0;">
+            <li>Firebase Auth</li>
+            <li>Firestore</li>
+            <li>Firebase Storage</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>External APIs</h3>
+          <ul style="margin-left: 1rem; margin-bottom: 0;">
+            <li>Naver Place API</li>
+            <li>Google Maps API</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Local</h3>
+          <ul style="margin-left: 1rem; margin-bottom: 0;">
+            <li>Hive (캐싱)</li>
+            <li>GetIt (DI)</li>
+            <li>SharedPreferences</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2><span class="emoji">📚</span>관련 문서</h2>
+      <ul class="task-list">
+        <li class="task-item">
+          <div class="task-content">
+            <div class="task-title"><a href="wbs.html" style="color: var(--primary); text-decoration: none;">📋 WBS (Work Breakdown Structure)</a></div>
+            <div class="task-desc">전체 작업을 단계별로 분류한 상세 계획서</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-content">
+            <div class="task-title"><a href="schedule.html" style="color: var(--primary); text-decoration: none;">📅 프로젝트 일정</a></div>
+            <div class="task-desc">주차별 목표 및 산출물 계획</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-content">
+            <div class="task-title"><a href="progress.html" style="color: var(--primary); text-decoration: none;">📈 진행현황</a></div>
+            <div class="task-desc">실시간 프로젝트 진행도 추적</div>
+          </div>
+        </li>
+        <li class="task-item">
+          <div class="task-content">
+            <div class="task-title"><a href="https://github.com/AJMini0212/VibeProject" target="_blank" style="color: var(--primary); text-decoration: none;">🔗 GitHub Repository</a></div>
+            <div class="task-desc">프로젝트 소스 코드 및 버전 관리</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>CafeMatch Development Dashboard</p>
+    <p>마지막 업데이트: 2026-05-26</p>
+    <p><a href="https://github.com/AJMini0212/VibeProject">GitHub Repository →</a></p>
+  </footer>
+
+  <script>
+    // Set active nav link
+    document.querySelectorAll('nav a').forEach(link => {
+      if (link.href === window.location.href) {
+        link.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>
