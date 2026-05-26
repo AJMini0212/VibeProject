@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../../domain/entities/cafe.dart';
+import '../../../providers/auth_provider.dart';
 
 class CafeActionButtons extends StatefulWidget {
   final Cafe cafe;
@@ -14,8 +16,6 @@ class CafeActionButtons extends StatefulWidget {
 }
 
 class _CafeActionButtonsState extends State<CafeActionButtons> {
-  bool isFavorite = false;
-
   void _onCall() {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -35,41 +35,56 @@ class _CafeActionButtonsState extends State<CafeActionButtons> {
   }
 
   void _toggleFavorite() {
-    setState(() {
-      isFavorite = !isFavorite;
-    });
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          isFavorite ? '즐겨찾기에 추가되었습니다' : '즐겨찾기에서 제거되었습니다',
+    final authProvider = context.read<AuthProvider>();
+    final isFavorite = authProvider.isFavorite(widget.cafe.id);
+
+    if (isFavorite) {
+      authProvider.removeFavorite(widget.cafe.id);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('즐겨찾기에서 제거되었습니다'),
+          duration: Duration(seconds: 1),
         ),
-        duration: const Duration(seconds: 1),
-      ),
-    );
+      );
+    } else {
+      authProvider.addFavorite(widget.cafe.id);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('즐겨찾기에 추가되었습니다'),
+          duration: Duration(seconds: 1),
+        ),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _buildActionButton(
-          Icons.call,
-          '전화',
-          _onCall,
-        ),
-        _buildActionButton(
-          Icons.directions,
-          '길 찾기',
-          _onDirections,
-        ),
-        _buildActionButton(
-          isFavorite ? Icons.favorite : Icons.favorite_border,
-          isFavorite ? '즐겨찾기됨' : '즐겨찾기',
-          _toggleFavorite,
-          iconColor: isFavorite ? Colors.red : null,
-        ),
-      ],
+    return Consumer<AuthProvider>(
+      builder: (context, authProvider, _) {
+        final isFavorite = authProvider.isFavorite(widget.cafe.id);
+
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _buildActionButton(
+              Icons.call,
+              '전화',
+              _onCall,
+            ),
+            _buildActionButton(
+              Icons.directions,
+              '길 찾기',
+              _onDirections,
+            ),
+            _buildActionButton(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              isFavorite ? '즐겨찾기됨' : '즐겨찾기',
+              _toggleFavorite,
+              iconColor: isFavorite ? Colors.red : null,
+            ),
+          ],
+        );
+      },
     );
   }
 

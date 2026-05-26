@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../domain/entities/cafe.dart';
 import 'widgets/cafe_detail_map.dart';
 import 'widgets/cafe_action_buttons.dart';
+import 'widgets/cafe_reviews_section.dart';
 
 class CafeDetailScreen extends StatelessWidget {
   final Cafe cafe;
@@ -147,6 +148,13 @@ class CafeDetailScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: CafeActionButtons(cafe: cafe),
             ),
+
+            const Divider(),
+
+            // 리뷰 섹션
+            CafeReviewsSection(cafe: cafe),
+
+            const SizedBox(height: 16),
           ],
         ),
       ),
