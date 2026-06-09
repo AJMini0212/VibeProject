@@ -36,12 +36,12 @@ void main() async {
         try {
           await firebase_core.Firebase.initializeApp(
             options: const firebase_core.FirebaseOptions(
-              apiKey: "AIzaSyBJ0cW2IMGssiWBSOuEZuYpkSB-66PdRQo",
-              authDomain: "cafematch-9e3b8.firebaseapp.com",
-              projectId: "cafematch-9e3b8",
-              storageBucket: "cafematch-9e3b8.appspot.com",
-              messagingSenderId: "519189156049",
-              appId: "1:519189156049:web:30b01e07d0b4c4c2e8cfb9",
+              apiKey: "AIzaSyCKiyLhYMmBmxH4wFD1w_QJvaV1s79d1kg",
+              authDomain: "cafematch-81e45.firebaseapp.com",
+              projectId: "cafematch-81e45",
+              storageBucket: "cafematch-81e45.firebasestorage.app",
+              messagingSenderId: "729259944849",
+              appId: "1:729259944849:web:f008981667183b863a0830",
             ),
           );
         } catch (e) {
