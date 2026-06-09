@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../domain/entities/review.dart';
-import '../../../presentation/providers/user_profile_provider.dart';
+import '../../../../domain/entities/review.dart';
+import '../../../providers/user_profile_provider.dart';
 
 class UserReviewsList extends StatelessWidget {
   final String userId;

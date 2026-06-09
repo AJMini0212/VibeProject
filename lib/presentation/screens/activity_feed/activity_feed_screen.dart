@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../presentation/providers/activity_feed_provider.dart';
+import '../../providers/activity_feed_provider.dart';
 import 'widgets/activity_list_item.dart';
 
 class ActivityFeedScreen extends StatefulWidget {

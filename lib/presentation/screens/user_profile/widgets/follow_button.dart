@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../presentation/providers/follow_provider.dart';
+import '../../../providers/follow_provider.dart';
 
 class FollowButton extends StatefulWidget {
   final String userId;

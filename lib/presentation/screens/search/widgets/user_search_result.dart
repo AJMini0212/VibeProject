@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../domain/entities/user.dart';
+import '../../../../domain/entities/user.dart';
 import '../../user_profile/user_profile_screen.dart';
 import '../../user_profile/widgets/follow_button.dart';
 

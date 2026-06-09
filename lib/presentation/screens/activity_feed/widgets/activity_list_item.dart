@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../domain/entities/activity.dart';
+import '../../../../domain/entities/activity.dart';
 import '../../user_profile/user_profile_screen.dart';
-import '../../../domain/repositories/user_repository.dart';
+import '../../../../domain/repositories/user_repository.dart';
 import 'package:get_it/get_it.dart';
 
 class ActivityListItem extends StatelessWidget {

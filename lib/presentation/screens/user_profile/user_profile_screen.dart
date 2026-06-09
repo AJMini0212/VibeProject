@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../domain/entities/user.dart';
-import '../../presentation/providers/user_profile_provider.dart';
-import '../../presentation/providers/auth_provider.dart';
+import '../../../domain/entities/user.dart';
+import '../../providers/user_profile_provider.dart';
+import '../../providers/auth_provider.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/user_reviews_list.dart';
 

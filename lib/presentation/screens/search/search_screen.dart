@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../presentation/providers/search_provider.dart';
-import '../../presentation/providers/auth_provider.dart';
+import '../../providers/search_provider.dart';
+import '../../providers/auth_provider.dart';
 import 'widgets/user_search_result.dart';
 
 class SearchScreen extends StatefulWidget {

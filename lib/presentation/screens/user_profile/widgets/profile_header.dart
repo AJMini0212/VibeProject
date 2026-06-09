@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../domain/entities/user.dart';
+import '../../../../domain/entities/user.dart';
 import 'follow_button.dart';
 
 class ProfileHeader extends StatelessWidget {
