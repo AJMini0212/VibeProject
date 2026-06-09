@@ -7,6 +7,8 @@ import 'widgets/map_widget.dart';
 import 'widgets/filter_panel.dart';
 import 'widgets/active_filters_bar.dart';
 import '../cafe_detail/cafe_detail_screen.dart';
+import '../search/search_screen.dart';
+import '../activity_feed/activity_feed_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -42,6 +44,26 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         title: const Text('CafeMatch'),
         centerTitle: true,
         actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const SearchScreen(),
+                ),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.notifications_outlined),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const ActivityFeedScreen(),
+                ),
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {

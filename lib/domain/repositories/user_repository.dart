@@ -6,6 +6,7 @@ abstract class UserRepository {
   Future<void> logout();
   Future<User?> getCurrentUser();
   Future<User?> getUserById(String userId);
+  Future<List<User>> searchUsers(String query);
   Future<void> updateProfile(String? displayName, String? photoUrl);
   Future<void> addFavorite(String cafeId);
   Future<void> removeFavorite(String cafeId);

@@ -22,6 +22,35 @@ class FirestoreUserDatasourceImpl implements FirestoreUserDatasource {
   }
 
   @override
+  Future<List<UserModel>> searchUsers(String query) async {
+    try {
+      if (query.isEmpty) {
+        return [];
+      }
+
+      final lowerQuery = query.toLowerCase();
+      final snapshot = await _firestore
+          .collection('users')
+          .get();
+
+      final results = snapshot.docs
+          .where((doc) {
+            final displayName =
+                (doc.data()['displayName'] as String?)?.toLowerCase() ?? '';
+            final email = (doc.data()['email'] as String?)?.toLowerCase() ?? '';
+            return displayName.contains(lowerQuery) ||
+                email.contains(lowerQuery);
+          })
+          .map((doc) => UserModel.fromJson(doc.data()))
+          .toList();
+
+      return results;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
   Future<void> addFavorite(String uid, String cafeId) async {
     try {
       await _firestore.collection('users').doc(uid).update(

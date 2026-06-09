@@ -54,6 +54,7 @@ import '../presentation/providers/follow_provider.dart';
 import '../presentation/providers/activity_feed_provider.dart';
 import '../presentation/providers/comment_provider.dart';
 import '../presentation/providers/user_profile_provider.dart';
+import '../presentation/providers/search_provider.dart';
 
 final getIt = GetIt.instance;
 
@@ -302,6 +303,12 @@ void setupDependencies() {
       reviewRepository: getIt<ReviewRepository>(),
       getFollowersUseCase: getIt<GetFollowersUseCase>(),
       getFollowingUseCase: getIt<GetFollowingUseCase>(),
+    ),
+  );
+
+  getIt.registerSingleton<SearchProvider>(
+    SearchProvider(
+      userRepository: getIt<UserRepository>(),
     ),
   );
 }

@@ -74,6 +74,16 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
+  Future<List<User>> searchUsers(String query) async {
+    try {
+      final userModels = await _userDatasource.searchUsers(query);
+      return userModels.map((model) => UserMapper.toDomain(model)).toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
   Future<void> updateProfile(String? displayName, String? photoUrl) async {
     // TODO: Implement profile update
     throw UnimplementedError();
