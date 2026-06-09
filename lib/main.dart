@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
-import 'dart:io' show Platform;
 import 'config/app_theme.dart';
 import 'core/services/firebase_service.dart';
 import 'data/datasources/cafe_local_datasource.dart';
@@ -24,7 +23,7 @@ void main() async {
     try {
       await getIt<FirebaseService>().initialize();
     } catch (e) {
-      print('Firebase initialization failed: $e');
+      // Firebase initialization failed, continue without it
     }
   }
 

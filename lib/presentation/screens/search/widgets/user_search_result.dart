@@ -32,7 +32,7 @@ class UserSearchResult extends StatelessWidget {
               : null,
         ),
         title: Text(
-          user.displayName,
+          user.displayName ?? '사용자',
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,

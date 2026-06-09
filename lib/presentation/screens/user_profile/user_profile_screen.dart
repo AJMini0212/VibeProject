@@ -48,7 +48,7 @@ class _UserProfileScreenState extends State<UserProfileScreen>
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.user.displayName),
+        title: Text(widget.user.displayName ?? '사용자'),
         centerTitle: true,
         elevation: 1,
       ),

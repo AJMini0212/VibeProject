@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../../domain/entities/activity.dart';
-import '../../user_profile/user_profile_screen.dart';
 import '../../../../domain/repositories/user_repository.dart';
 import 'package:get_it/get_it.dart';
 
@@ -91,11 +90,11 @@ class ActivityListItem extends StatelessWidget {
     switch (activity.type) {
       case ActivityType.follow:
         return '새 사용자를 팔로우하기 시작했습니다';
-      case ActivityType.reviewPosted:
+      case ActivityType.review_posted:
         return '새로운 리뷰를 작성했습니다';
-      case ActivityType.reviewLiked:
+      case ActivityType.review_liked:
         return '리뷰에 좋아요를 눌렀습니다';
-      case ActivityType.commentAdded:
+      case ActivityType.comment_added:
         return '리뷰에 댓글을 작성했습니다';
     }
   }

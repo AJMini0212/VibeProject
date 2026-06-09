@@ -57,7 +57,7 @@ class ProfileHeader extends StatelessWidget {
 
           // 사용자명
           Text(
-            user.displayName,
+            user.displayName ?? '사용자',
             style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
