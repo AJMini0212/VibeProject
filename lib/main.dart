@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'config/app_theme.dart';
 import 'core/services/firebase_service.dart';
 import 'data/datasources/cafe_local_datasource.dart';
@@ -23,23 +24,50 @@ void main() async {
   // Load environment variables
   await dotenv.load(fileName: '.env');
 
-  // Initialize Firebase (skip on web due to compatibility issues)
-  if (!identical(0, 0.0)) { // This is true only on non-web platforms
-    try {
+  // Initialize Firebase
+  try {
+    if (identical(0, 0.0)) {
+      // Web platform: Firebase initialized via HTML script + Dart
+      // Wait a moment for HTML script to initialize Firebase
+      await Future.delayed(const Duration(milliseconds: 500));
+
+      if (firebase_core.Firebase.apps.isEmpty) {
+        try {
+          await firebase_core.Firebase.initializeApp(
+            options: const firebase_core.FirebaseOptions(
+              apiKey: "AIzaSyBJ0cW2IMGssiWBSOuEZuYpkSB-66PdRQo",
+              authDomain: "cafematch-9e3b8.firebaseapp.com",
+              projectId: "cafematch-9e3b8",
+              storageBucket: "cafematch-9e3b8.appspot.com",
+              messagingSenderId: "519189156049",
+              appId: "1:519189156049:web:30b01e07d0b4c4c2e8cfb9",
+            ),
+          );
+        } catch (e) {
+          // Firebase might already be initialized by HTML script
+          // This is expected on web platform
+        }
+      }
+    } else {
+      // Non-web platform: initialize Firebase via service
       await getIt<FirebaseService>().initialize();
-    } catch (e) {
-      // Firebase initialization failed, continue without it
     }
+  } catch (e) {
+    // Firebase initialization failed, continue with limited functionality
   }
 
-  // Initialize Hive
-  await Hive.initFlutter();
+  // Initialize Hive (skip on web)
+  if (!identical(0, 0.0)) {
+    await Hive.initFlutter();
+  }
 
   // Setup dependency injection
   setupDependencies();
 
-  // Initialize local datasource
-  await getIt<CafeLocalDatasource>().initializeHive();
+  // Initialize local datasource (skip on web)
+  if (!identical(0, 0.0)) {
+    await getIt<CafeLocalDatasource>().initializeHive();
+  }
 
   runApp(const CafeMatchApp());
 }
