@@ -51,8 +51,11 @@ dependencies:
   # Location Services
   location: ^5.0.0
 
-  # Image Caching (Phase 1: temporarily removed)
-  # cached_network_image: ^3.3.0
+  # Image Caching (Phase 3)
+  cached_network_image: ^3.3.0
+
+  # Loading Skeleton (Phase 3)
+  shimmer: ^3.0.0
 
   # HTTP Requests
   http: ^1.1.0
