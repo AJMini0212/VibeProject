@@ -3,7 +3,9 @@ import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+  final VoidCallback? onBackToLogin;
+
+  const RegisterScreen({super.key, this.onBackToLogin});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -217,7 +219,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       );
 
                                       if (mounted && authProvider.isAuthenticated) {
-                                        Navigator.pop(context);
+                                        if (widget.onBackToLogin != null) {
+                                          widget.onBackToLogin!();
+                                        }
                                       }
                                     }
                                   },
@@ -251,7 +255,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     children: [
                       const Text('이미 계정이 있으신가요? '),
                       GestureDetector(
-                        onTap: () => Navigator.pop(context),
+                        onTap: () {
+                          if (widget.onBackToLogin != null) {
+                            widget.onBackToLogin!();
+                          }
+                        },
                         child: const Text(
                           '로그인',
                           style: TextStyle(

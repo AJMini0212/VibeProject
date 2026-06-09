@@ -4,7 +4,9 @@ import '../../providers/auth_provider.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final VoidCallback? onRegisterTapped;
+
+  const LoginScreen({super.key, this.onRegisterTapped});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -180,12 +182,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       const Text('계정이 없으신가요? '),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const RegisterScreen(),
-                            ),
-                          );
+                          if (widget.onRegisterTapped != null) {
+                            widget.onRegisterTapped!();
+                          }
                         },
                         child: const Text(
                           '회원가입',

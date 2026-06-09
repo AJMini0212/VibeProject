@@ -16,6 +16,7 @@ import 'presentation/providers/follow_provider.dart';
 import 'presentation/providers/activity_feed_provider.dart';
 import 'presentation/providers/user_profile_provider.dart';
 import 'presentation/screens/auth/login_screen.dart';
+import 'presentation/screens/auth/register_screen.dart';
 import 'presentation/screens/home/home_screen.dart';
 
 void main() async {
@@ -113,8 +114,15 @@ class CafeMatchApp extends StatelessWidget {
   }
 }
 
-class _HomeRouterWidget extends StatelessWidget {
+class _HomeRouterWidget extends StatefulWidget {
   const _HomeRouterWidget();
+
+  @override
+  State<_HomeRouterWidget> createState() => _HomeRouterWidgetState();
+}
+
+class _HomeRouterWidgetState extends State<_HomeRouterWidget> {
+  bool _showRegister = false;
 
   @override
   Widget build(BuildContext context) {
@@ -122,8 +130,24 @@ class _HomeRouterWidget extends StatelessWidget {
       builder: (context, authProvider, _) {
         if (authProvider.isAuthenticated) {
           return const HomeScreen();
+        } else if (_showRegister) {
+          return Scaffold(
+            body: RegisterScreen(
+              onBackToLogin: () {
+                setState(() {
+                  _showRegister = false;
+                });
+              },
+            ),
+          );
         } else {
-          return const LoginScreen();
+          return LoginScreen(
+            onRegisterTapped: () {
+              setState(() {
+                _showRegister = true;
+              });
+            },
+          );
         }
       },
     );
