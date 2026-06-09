@@ -9,6 +9,11 @@ import 'di/injection.dart';
 import 'presentation/providers/auth_provider.dart';
 import 'presentation/providers/home_provider.dart';
 import 'presentation/providers/review_provider.dart';
+import 'presentation/providers/comment_provider.dart';
+import 'presentation/providers/search_provider.dart';
+import 'presentation/providers/follow_provider.dart';
+import 'presentation/providers/activity_feed_provider.dart';
+import 'presentation/providers/user_profile_provider.dart';
 import 'presentation/screens/auth/login_screen.dart';
 import 'presentation/screens/home/home_screen.dart';
 
@@ -57,6 +62,21 @@ class CafeMatchApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (_) => getIt<ReviewProvider>(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => getIt<CommentProvider>(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => getIt<SearchProvider>(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => getIt<FollowProvider>(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => getIt<ActivityFeedProvider>(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => getIt<UserProfileProvider>(),
           ),
         ],
         child: const _HomeRouterWidget(),
