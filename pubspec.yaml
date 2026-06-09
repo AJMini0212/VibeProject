@@ -39,7 +39,7 @@ dependencies:
   provider: ^6.0.0
 
   # Dependency Injection
-  get_it: ^7.6.0
+  get_it: ^9.2.1
 
   # Local Storage
   hive: ^2.2.3
@@ -49,7 +49,7 @@ dependencies:
   google_maps_flutter: ^2.5.0
 
   # Location Services
-  location: ^5.0.0
+  location: ^8.0.1
 
   # Image Caching (Phase 3)
   cached_network_image: ^3.3.0
@@ -61,7 +61,7 @@ dependencies:
   http: ^1.1.0
 
   # Environment Variables
-  flutter_dotenv: ^5.1.0
+  flutter_dotenv: ^6.0.1
 
   # Crypto
   crypto: ^3.0.0
@@ -70,13 +70,13 @@ dependencies:
   uuid: ^4.0.0
 
   # Internationalization
-  intl: ^0.19.0
+  intl: ^0.20.2
 
   # Firebase (Phase 2)
-  firebase_core: ^2.24.0
-  firebase_auth: ^4.15.0
-  cloud_firestore: ^4.14.0
-  firebase_storage: ^11.5.0
+  firebase_core: ^4.10.0
+  firebase_auth: ^6.5.2
+  cloud_firestore: ^6.5.0
+  firebase_storage: ^13.4.2
 
 dev_dependencies:
   flutter_test:
