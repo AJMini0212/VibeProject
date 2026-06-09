@@ -6,6 +6,9 @@ class ReviewModel {
   final String text;
   final DateTime createdAt;
   final DateTime updatedAt;
+  final List<String> likedByUserIds;
+  final int likeCount;
+  final int commentCount;
 
   ReviewModel({
     required this.id,
@@ -15,6 +18,9 @@ class ReviewModel {
     required this.text,
     required this.createdAt,
     required this.updatedAt,
+    this.likedByUserIds = const [],
+    this.likeCount = 0,
+    this.commentCount = 0,
   });
 
   factory ReviewModel.fromJson(Map<String, dynamic> json) {
@@ -30,6 +36,9 @@ class ReviewModel {
       updatedAt: json['updatedAt'] is DateTime
           ? json['updatedAt'] as DateTime
           : DateTime.parse(json['updatedAt'] as String),
+      likedByUserIds: List<String>.from(json['likedByUserIds'] as List? ?? []),
+      likeCount: json['likeCount'] as int? ?? 0,
+      commentCount: json['commentCount'] as int? ?? 0,
     );
   }
 
@@ -42,6 +51,9 @@ class ReviewModel {
       'text': text,
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt.toIso8601String(),
+      'likedByUserIds': likedByUserIds,
+      'likeCount': likeCount,
+      'commentCount': commentCount,
     };
   }
 }

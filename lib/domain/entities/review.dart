@@ -6,6 +6,9 @@ class Review {
   final String text;
   final DateTime createdAt;
   final DateTime updatedAt;
+  final List<String> likedByUserIds;
+  final int likeCount;
+  final int commentCount;
 
   Review({
     required this.id,
@@ -15,6 +18,9 @@ class Review {
     required this.text,
     required this.createdAt,
     required this.updatedAt,
+    this.likedByUserIds = const [],
+    this.likeCount = 0,
+    this.commentCount = 0,
   });
 
   Review copyWith({
@@ -25,6 +31,9 @@ class Review {
     String? text,
     DateTime? createdAt,
     DateTime? updatedAt,
+    List<String>? likedByUserIds,
+    int? likeCount,
+    int? commentCount,
   }) {
     return Review(
       id: id ?? this.id,
@@ -34,6 +43,9 @@ class Review {
       text: text ?? this.text,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+      likedByUserIds: likedByUserIds ?? this.likedByUserIds,
+      likeCount: likeCount ?? this.likeCount,
+      commentCount: commentCount ?? this.commentCount,
     );
   }
 }

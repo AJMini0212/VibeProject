@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
+import 'dart:io' show Platform;
 import 'config/app_theme.dart';
 import 'core/services/firebase_service.dart';
 import 'data/datasources/cafe_local_datasource.dart';
@@ -18,8 +19,14 @@ void main() async {
   // Load environment variables
   await dotenv.load(fileName: '.env');
 
-  // Initialize Firebase
-  await getIt<FirebaseService>().initialize();
+  // Initialize Firebase (skip on web due to compatibility issues)
+  if (!identical(0, 0.0)) { // This is true only on non-web platforms
+    try {
+      await getIt<FirebaseService>().initialize();
+    } catch (e) {
+      print('Firebase initialization failed: $e');
+    }
+  }
 
   // Initialize Hive
   await Hive.initFlutter();

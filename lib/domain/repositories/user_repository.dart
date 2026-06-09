@@ -5,6 +5,7 @@ abstract class UserRepository {
   Future<User> register(String email, String password, String displayName);
   Future<void> logout();
   Future<User?> getCurrentUser();
+  Future<User?> getUserById(String userId);
   Future<void> updateProfile(String? displayName, String? photoUrl);
   Future<void> addFavorite(String cafeId);
   Future<void> removeFavorite(String cafeId);

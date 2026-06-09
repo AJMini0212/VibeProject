@@ -49,6 +49,16 @@ class ReviewRepositoryImpl implements ReviewRepository {
   }
 
   @override
+  Future<List<Review>> getReviewsByUserId(String userId) async {
+    try {
+      final reviewModels = await _reviewDatasource.getReviewsByUserId(userId);
+      return ReviewMapper.toDomainList(reviewModels);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
   Future<void> deleteReview(String reviewId) async {
     try {
       await _reviewDatasource.deleteReview(reviewId);

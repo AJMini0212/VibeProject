@@ -8,8 +8,11 @@ class UserMapper {
       email: model.email,
       displayName: model.displayName,
       photoUrl: model.photoUrl,
+      bio: model.bio,
       createdAt: model.createdAt,
       favoriteIds: model.favoriteIds,
+      followerIds: model.followerIds,
+      followingIds: model.followingIds,
     );
   }
 
@@ -19,8 +22,11 @@ class UserMapper {
       email: entity.email,
       displayName: entity.displayName,
       photoUrl: entity.photoUrl,
+      bio: entity.bio,
       createdAt: entity.createdAt,
       favoriteIds: entity.favoriteIds,
+      followerIds: entity.followerIds,
+      followingIds: entity.followingIds,
     );
   }
 

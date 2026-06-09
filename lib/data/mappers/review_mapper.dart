@@ -11,6 +11,9 @@ class ReviewMapper {
       text: model.text,
       createdAt: model.createdAt,
       updatedAt: model.updatedAt,
+      likedByUserIds: model.likedByUserIds,
+      likeCount: model.likeCount,
+      commentCount: model.commentCount,
     );
   }
 
@@ -23,6 +26,9 @@ class ReviewMapper {
       text: entity.text,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
+      likedByUserIds: entity.likedByUserIds,
+      likeCount: entity.likeCount,
+      commentCount: entity.commentCount,
     );
   }
 

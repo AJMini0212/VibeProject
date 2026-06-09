@@ -37,8 +37,11 @@ class FirebaseAuthDatasourceImpl implements FirebaseAuthDatasource {
         email: user.email!,
         displayName: displayName,
         photoUrl: user.photoURL,
+        bio: null,
         createdAt: DateTime.now(),
         favoriteIds: [],
+        followerIds: [],
+        followingIds: [],
       );
 
       await _firestore.collection('users').doc(user.uid).set(

@@ -37,6 +37,23 @@ class FirestoreReviewDatasourceImpl implements FirestoreReviewDatasource {
   }
 
   @override
+  Future<List<ReviewModel>> getReviewsByUserId(String userId) async {
+    try {
+      final snapshot = await _firestore
+          .collection('reviews')
+          .where('userId', isEqualTo: userId)
+          .orderBy('createdAt', descending: true)
+          .get();
+
+      return snapshot.docs
+          .map((doc) => ReviewModel.fromJson(doc.data()))
+          .toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
   Future<void> deleteReview(String reviewId) async {
     try {
       await _firestore.collection('reviews').doc(reviewId).delete();

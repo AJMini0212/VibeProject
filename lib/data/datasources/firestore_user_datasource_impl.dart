@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../models/user_model.dart';
 import 'firestore_user_datasource.dart';
 
 class FirestoreUserDatasourceImpl implements FirestoreUserDatasource {
@@ -6,6 +7,19 @@ class FirestoreUserDatasourceImpl implements FirestoreUserDatasource {
 
   FirestoreUserDatasourceImpl({required FirebaseFirestore firestore})
       : _firestore = firestore;
+
+  @override
+  Future<UserModel?> getUserById(String userId) async {
+    try {
+      final doc = await _firestore.collection('users').doc(userId).get();
+      if (!doc.exists) {
+        return null;
+      }
+      return UserModel.fromJson(doc.data() ?? {});
+    } catch (e) {
+      rethrow;
+    }
+  }
 
   @override
   Future<void> addFavorite(String uid, String cafeId) async {
