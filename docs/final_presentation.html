@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CafeMatch · 최종 발표</title>
+<style>
+  :root{
+    --primary:#6d4c41; --primary-light:#8d6e63; --primary-dark:#4e342e;
+    --accent:#d4a574; --bg:#faf7f2; --surface:#ffffff; --text:#1f1a17;
+    --muted:#6b5e57; --border:#e6ddd4; --ok:#388e3c; --warn:#f57c00; --info:#1976d2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Malgun Gothic',sans-serif;
+    background:#2a221e;color:var(--text);overflow:hidden;
+  }
+  .deck{height:100vh;width:100vw;position:relative}
+  .slide{
+    position:absolute;inset:0;display:none;flex-direction:column;
+    padding:4.5vh 6vw;background:var(--bg);overflow-y:auto;
+    animation:fade .35s ease;
+  }
+  .slide.active{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .slide h1{font-size:3rem;color:var(--primary-dark);line-height:1.15;margin-bottom:1rem}
+  .slide h2{font-size:2.1rem;color:var(--primary);margin-bottom:1.4rem;border-bottom:3px solid var(--accent);padding-bottom:.6rem}
+  .slide h3{font-size:1.35rem;color:var(--primary-dark);margin:1rem 0 .5rem}
+  .slide p,.slide li{font-size:1.18rem;color:var(--text);line-height:1.7}
+  .slide ul,.slide ol{padding-left:1.4rem;margin:.4rem 0}
+  .slide li{margin:.45rem 0}
+  .kicker{display:inline-block;background:var(--accent);color:#fff;font-weight:700;
+    padding:.3rem 1rem;border-radius:999px;font-size:.95rem;margin-bottom:1.4rem;letter-spacing:.05em}
+  .center{justify-content:center;align-items:center;text-align:center;
+    background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%);color:#fff}
+  .center h1{color:#fff;font-size:4rem}
+  .center p{color:#f3e9df;font-size:1.5rem}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;
+    padding:1.3rem 1.4rem;box-shadow:0 2px 10px rgba(80,52,46,.06)}
+  .card h3{margin-top:0}
+  .tag{display:inline-block;background:#f0e7dd;color:var(--primary-dark);
+    border-radius:8px;padding:.25rem .7rem;font-size:.95rem;margin:.2rem .25rem .2rem 0;font-weight:600}
+  table{width:100%;border-collapse:collapse;font-size:1.05rem;background:var(--surface)}
+  th,td{border:1px solid var(--border);padding:.7rem .9rem;text-align:left;vertical-align:top}
+  th{background:var(--primary);color:#fff}
+  tr:nth-child(even) td{background:#f7f1ea}
+  code{background:#efe7dd;color:var(--primary-dark);padding:.1rem .4rem;border-radius:6px;font-size:.95em}
+  pre{background:#2f2722;color:#f3e9df;border-radius:12px;padding:1rem 1.2rem;overflow:auto;
+    font-size:1rem;line-height:1.55;margin:.6rem 0}
+  pre code{background:none;color:inherit;padding:0}
+  .pill{display:flex;gap:.6rem;flex-wrap:wrap}
+  .stat{text-align:center;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.2rem}
+  .stat .n{font-size:2.6rem;font-weight:800;color:var(--primary)}
+  .stat .l{font-size:1rem;color:var(--muted)}
+  .ok{color:var(--ok);font-weight:700}.warn{color:var(--warn);font-weight:700}.info{color:var(--info);font-weight:700}
+  .flow{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;font-weight:700;color:var(--primary-dark)}
+  .flow span{background:var(--surface);border:2px solid var(--accent);border-radius:10px;padding:.5rem .9rem}
+  .flow .arr{border:none;background:none;color:var(--accent);font-size:1.4rem}
+  .muted{color:var(--muted)}
+  .nav{position:fixed;bottom:14px;right:18px;display:flex;gap:8px;align-items:center;z-index:10}
+  .nav button{background:var(--primary);color:#fff;border:none;border-radius:8px;
+    width:40px;height:40px;font-size:1.2rem;cursor:pointer;opacity:.85}
+  .nav button:hover{opacity:1}
+  .counter{position:fixed;bottom:20px;left:18px;color:var(--muted);font-size:.95rem;z-index:10}
+  .bar{position:fixed;top:0;left:0;height:5px;background:var(--accent);z-index:11;transition:width .3s}
+  .two-col{columns:2;column-gap:2rem}
+  .small{font-size:1rem!important}
+  .legend{font-size:1rem;color:var(--muted);margin-top:.6rem}
+  .badge-ok{background:var(--ok)}.badge-warn{background:var(--warn)}
+  .timeline{border-left:3px solid var(--accent);padding-left:1.2rem;margin-left:.4rem}
+  .timeline li{margin:.6rem 0}
+  .ascii{font-family:'Consolas',monospace;white-space:pre;background:var(--surface);
+    border:1px solid var(--border);border-radius:12px;padding:1rem;font-size:1rem;line-height:1.4;color:var(--primary-dark);overflow:auto}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<div class="deck" id="deck">
+
+<!-- 1. 표지 / 비전 -->
+<section class="slide center active">
+  <div class="kicker">VibeCoding · 최종 발표</div>
+  <h1>CafeMatch ☕</h1>
+  <p>취향으로 연결되는 위치 기반 카페 커뮤니티</p>
+  <p class="small" style="margin-top:2rem">Flutter · Firebase · Clean Architecture &nbsp;|&nbsp; v1.2.0</p>
+</section>
+
+<!-- 2. 비전 제시 -->
+<section class="slide">
+  <span class="kicker">VISION</span>
+  <h2>비전 제시</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>한 문장 비전</h3>
+      <p style="font-size:1.4rem">“내 주변의 좋은 카페를, <b>취향이 맞는 사람들</b>과 함께 발견한다.”</p>
+    </div>
+    <div class="card">
+      <h3>지향점</h3>
+      <ul>
+        <li>단순 지도 검색을 넘어 <b>리뷰·팔로우·피드</b>로 이어지는 커뮤니티</li>
+        <li>위치 기반 발견 + 신뢰할 수 있는 사용자 리뷰</li>
+        <li>모바일·웹 모두에서 동작하는 <b>크로스플랫폼</b></li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid3" style="margin-top:1.4rem">
+    <div class="stat"><div class="n">발견</div><div class="l">내 위치 주변 카페 탐색</div></div>
+    <div class="stat"><div class="n">기록</div><div class="l">별점·리뷰·즐겨찾기</div></div>
+    <div class="stat"><div class="n">연결</div><div class="l">팔로우·활동 피드</div></div>
+  </div>
+</section>
+
+<!-- 3. 문제 정의 -->
+<section class="slide">
+  <span class="kicker">PROBLEM</span>
+  <h2>문제 정의</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>사용자의 고충</h3>
+      <ul>
+        <li>“내 주변 <b>괜찮은 카페</b>를 빠르게 찾기 어렵다”</li>
+        <li>포털 리뷰는 <b>광고·신뢰성</b> 문제가 있다</li>
+        <li>취향이 비슷한 사람의 추천을 <b>이어보기</b> 어렵다</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>기존 서비스의 한계</h3>
+      <ul>
+        <li>지도 앱: 검색은 되지만 <b>커뮤니티가 없음</b></li>
+        <li>SNS: 소통은 되지만 <b>위치 기반 발견이 약함</b></li>
+        <li>둘을 <b>하나로 잇는</b> 경험의 부재</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="margin-top:1.4rem;border-left:6px solid var(--accent)">
+    <h3>해결 가설</h3>
+    <p>위치 기반 카페 검색 + 사용자 리뷰 + 팔로우/활동 피드를 <b>하나의 앱</b>에 결합하면,
+      “신뢰할 수 있는 발견”이라는 새로운 가치를 만들 수 있다.</p>
+  </div>
+</section>
+
+<!-- 4. 프로젝트 계획 (WBS & 기술 스택) -->
+<section class="slide">
+  <span class="kicker">PLAN · WBS</span>
+  <h2>프로젝트 계획 — WBS</h2>
+  <table>
+    <tr><th>Phase</th><th>핵심 작업</th><th>산출물</th><th>상태</th></tr>
+    <tr><td><b>P1. 지도 & 검색</b></td><td>Google Maps 통합, Naver Place API, 거리/별점 필터, Hive 캐싱</td><td>홈 지도 화면</td><td class="ok">완료</td></tr>
+    <tr><td><b>P2. 인증 & 리뷰</b></td><td>Firebase 회원가입/로그인, 리뷰 CRUD, 즐겨찾기</td><td>인증·리뷰 시스템</td><td class="ok">완료</td></tr>
+    <tr><td><b>P3. 소셜 & 배포</b></td><td>팔로우, 활동 피드, 댓글, 검색, 프로필, 성능 최적화, 배포 준비</td><td>커뮤니티 + 배포</td><td class="ok">완료</td></tr>
+  </table>
+  <p class="legend">P3는 Step 0~12로 세분화: 도메인 확장 → 데이터/리포지토리 → UseCase → Provider → DI → UI → 스키마/보안 → 최적화 → 배포</p>
+</section>
+
+<!-- 5. 기술 스택 -->
+<section class="slide">
+  <span class="kicker">PLAN · STACK</span>
+  <h2>기술 스택</h2>
+  <div class="grid2">
+    <div class="card"><h3>프레임워크 · 언어</h3>
+      <div class="pill"><span class="tag">Flutter 3.11.3</span><span class="tag">Dart 3.11.3</span><span class="tag">Material 3</span></div></div>
+    <div class="card"><h3>상태관리 · DI</h3>
+      <div class="pill"><span class="tag">Provider</span><span class="tag">GetIt (DI)</span></div></div>
+    <div class="card"><h3>백엔드 (Firebase)</h3>
+      <div class="pill"><span class="tag">Auth</span><span class="tag">Cloud Firestore</span><span class="tag">Storage</span><span class="tag">Hosting</span></div></div>
+    <div class="card"><h3>지도 · 위치 · 데이터</h3>
+      <div class="pill"><span class="tag">google_maps_flutter</span><span class="tag">geolocator</span><span class="tag">Google Places API (New)</span><span class="tag">Naver Place API</span></div></div>
+    <div class="card"><h3>로컬 · 캐시</h3>
+      <div class="pill"><span class="tag">Hive</span><span class="tag">cached_network_image</span><span class="tag">shimmer</span></div></div>
+    <div class="card"><h3>기타</h3>
+      <div class="pill"><span class="tag">http</span><span class="tag">flutter_dotenv</span><span class="tag">uuid</span><span class="tag">intl</span></div></div>
+  </div>
+</section>
+
+<!-- 6. 프로젝트 진행 과정 -->
+<section class="slide">
+  <span class="kicker">PROGRESS</span>
+  <h2>프로젝트 진행 과정</h2>
+  <ul class="timeline">
+    <li><b>P1 지도 & 검색</b> — 지도/검색/필터 UI, Naver API 연동, 오프라인 캐싱 구축</li>
+    <li><b>P2 인증 & 리뷰</b> — Firebase 인증, Firestore 리뷰 CRUD, 즐겨찾기</li>
+    <li><b>P3 소셜 기능</b> — Follow/Activity/Comment 도메인 → 데이터 → UseCase → Provider → UI 풀스택 구현</li>
+    <li><b>웹 호환성 안정화</b> — Firebase 웹 초기화, Provider 스코프, 위치/Places 웹 대응</li>
+    <li><b>실데이터 연동</b> — Google Places (New) 기반 실제 주변 카페 표시</li>
+    <li><b>배포 준비</b> — Firestore 보안 규칙/인덱스, 빌드, 정책 문서 작성</li>
+  </ul>
+  <div class="grid3" style="margin-top:1rem">
+    <div class="stat"><div class="n">3</div><div class="l">개발 Phase</div></div>
+    <div class="stat"><div class="n">13</div><div class="l">P3 세부 Step</div></div>
+    <div class="stat"><div class="n">v1.2.0</div><div class="l">현재 버전</div></div>
+  </div>
+</section>
+
+<!-- 7. 구현 방법 설명 -->
+<section class="slide">
+  <span class="kicker">HOW</span>
+  <h2>구현 방법 설명</h2>
+  <p>모든 기능은 <b>4계층 Clean Architecture</b>의 동일한 패턴으로 구현됩니다.</p>
+  <div class="flow" style="margin:1rem 0">
+    <span>UI / Provider</span><span class="arr">→</span>
+    <span>UseCase</span><span class="arr">→</span>
+    <span>Repository (추상)</span><span class="arr">→</span>
+    <span>Repository Impl</span><span class="arr">→</span>
+    <span>Datasource</span><span class="arr">→</span>
+    <span>Firebase / API</span>
+  </div>
+  <div class="grid2">
+    <div class="card"><h3>핵심 패턴</h3>
+      <ul>
+        <li><b>Entity ↔ Model ↔ Mapper</b>로 도메인/데이터 분리</li>
+        <li><b>Repository 인터페이스</b>로 의존성 역전</li>
+        <li><b>GetIt</b>로 23개 의존성 주입</li>
+        <li><b>Provider(ChangeNotifier)</b>로 상태 관리</li>
+      </ul>
+    </div>
+    <div class="card"><h3>예: 팔로우 기능</h3>
+      <ul>
+        <li>FollowProvider → FollowUserUseCase</li>
+        <li>→ FollowRepositoryImpl → FirestoreFollowDatasource</li>
+        <li><b>트랜잭션</b>으로 follower/following 배열 + 활동기록 원자적 갱신</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 8. 앱 구조 설명 -->
+<section class="slide">
+  <span class="kicker">STRUCTURE</span>
+  <h2>앱 구조 설명</h2>
+  <div class="ascii">lib/
+├── presentation/        화면 · 위젯 · Provider(8)
+│   ├── screens/         home · cafe_detail · auth · search
+│   │                    activity_feed · user_profile
+│   └── providers/       Auth · Home · Review · Comment
+│                        Follow · ActivityFeed · UserProfile · Search
+├── application/         UseCases(16) — auth · cafe · review
+│                        follow · activity · comment
+├── domain/              entities · repositories(추상 인터페이스)
+│   └── entities/        User · Cafe · Review · Follow · Activity · Comment
+├── data/                models · mappers · datasources · repositories(impl)
+│   └── datasources/     Firestore* · Naver · GooglePlaces · Hive
+├── core/                services(Location, Firebase) · utils
+├── config/              app_theme
+└── di/                  injection.dart (GetIt 등록)</div>
+  <p class="legend">Dart 파일 104개 · 약 8,200줄 · 화면 22개 · Provider 8개 · UseCase 16개</p>
+</section>
+
+<!-- 9. 아키텍처 다이어그램 -->
+<section class="slide">
+  <span class="kicker">ARCHITECTURE</span>
+  <h2>아키텍처 다이어그램</h2>
+  <div class="ascii">┌─────────────────────────────────────────────────────────┐
+│  PRESENTATION   Screens / Widgets / Provider(ChangeNotifier)│
+└───────────────▲───────────────────────┬────────────────────┘
+                │ 상태 구독               │ 호출
+┌───────────────┴───────────────────────▼────────────────────┐
+│  APPLICATION    UseCases (비즈니스 흐름 조합)                 │
+└───────────────▲───────────────────────┬────────────────────┘
+                │ 인터페이스              │ 위임
+┌───────────────┴───────────────────────▼────────────────────┐
+│  DOMAIN         Entities · Repository(추상)  ← 의존성 역전    │
+└───────────────▲───────────────────────┬────────────────────┘
+                │ 구현                    │
+┌───────────────┴───────────────────────▼────────────────────┐
+│  DATA           Repository Impl · Mapper · Datasource         │
+│                 ├─ Firebase Auth / Cloud Firestore / Storage  │
+│                 ├─ Google Places API (New) / Naver Place API  │
+│                 └─ Hive (오프라인 캐시)                        │
+└──────────────────────────────────────────────────────────────┘</div>
+  <p class="legend">의존성은 항상 바깥(Data) → 안(Domain) 방향으로만 향함 → 테스트·교체 용이</p>
+</section>
+
+<!-- 10. 개발 환경 설정 -->
+<section class="slide">
+  <span class="kicker">SETUP</span>
+  <h2>개발 환경 설정</h2>
+  <div class="grid2">
+    <div class="card"><h3>필수 도구</h3>
+      <ul><li>Flutter SDK 3.11.3+</li><li>Dart 3.11.3+</li><li>Chrome (웹 실행)</li><li>Firebase 프로젝트</li></ul>
+    </div>
+    <div class="card"><h3>환경변수 <code>.env</code></h3>
+<pre><code>NAVER_CLIENT_ID=...
+NAVER_CLIENT_SECRET=...
+GOOGLE_MAPS_API_KEY=...</code></pre>
+    </div>
+  </div>
+  <h3>실행 절차</h3>
+<pre><code># 1) 의존성 설치
+flutter pub get
+
+# 2) 환경변수 파일 생성
+cp .env.example .env   # 키 입력
+
+# 3) 웹 실행
+flutter run -d chrome</code></pre>
+  <p class="legend">Firebase 설정: web/index.html · lib/main.dart 의 FirebaseOptions / Google Cloud에서 Places API(New)·Identity Toolkit 활성화</p>
+</section>
+
+<!-- 11. GitHub 설치 가이드 -->
+<section class="slide">
+  <span class="kicker">INSTALL</span>
+  <h2>GitHub 설치 가이드</h2>
+<pre><code># 1) 저장소 클론
+git clone https://github.com/&lt;org&gt;/cafematch.git
+cd cafematch
+
+# 2) 의존성 설치
+flutter pub get
+
+# 3) 환경변수 설정
+cp .env.example .env        # API 키 입력
+
+# 4) (선택) Firebase 설정 확인
+#    web/index.html, lib/main.dart 의 firebaseConfig
+
+# 5) 실행
+flutter run -d chrome       # 웹
+flutter run                 # 연결된 모바일 기기
+
+# 6) 테스트
+flutter test</code></pre>
+  <div class="card"><h3>트러블슈팅 빠른 참조</h3>
+    <ul class="small">
+      <li>회원가입 실패 → Identity Toolkit API 활성화 + 같은 Google 계정으로 콘솔 로그인</li>
+      <li>피드/리뷰 인덱스 오류 → 콘솔 링크로 복합 인덱스 생성</li>
+      <li>지도에 카페 없음 → Places API (New) 활성화 + 결제 설정</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 12. 빌드와 배포 과정 -->
+<section class="slide">
+  <span class="kicker">BUILD · DEPLOY</span>
+  <h2>빌드와 배포 과정</h2>
+  <div class="grid2">
+    <div class="card"><h3>빌드</h3>
+<pre><code>flutter build web --release
+flutter build apk --release
+flutter build appbundle --release</code></pre>
+      <p class="small ok">✓ 웹 릴리스 빌드 성공 (아이콘 트리셰이킹 99% 감소)</p>
+    </div>
+    <div class="card"><h3>배포</h3>
+<pre><code># Firebase 보안 규칙 / 인덱스
+firebase deploy --only firestore:rules
+firebase deploy --only firestore:indexes
+
+# 웹 호스팅
+firebase deploy --only hosting</code></pre>
+    </div>
+  </div>
+  <h3>배포 산출물</h3>
+  <div class="pill">
+    <span class="tag">firebase.json</span><span class="tag">firestore.rules</span>
+    <span class="tag">firestore.indexes.json</span><span class="tag">PRIVACY_POLICY.md</span>
+    <span class="tag">TERMS_OF_SERVICE.md</span><span class="tag">DEPLOYMENT_GUIDE.md</span>
+  </div>
+</section>
+
+<!-- 13. 구현 시행착오 사례 -->
+<section class="slide">
+  <span class="kicker">TROUBLESHOOTING</span>
+  <h2>구현 시행착오 사례</h2>
+  <table>
+    <tr><th>증상</th><th>원인</th><th>해결</th></tr>
+    <tr><td>웹 회원가입 무한 로딩</td><td><code>identical(0,0.0)</code>로 잘못된 웹 감지</td><td><code>kIsWeb</code>으로 교체</td></tr>
+    <tr><td>카페 상세에서 Provider 못 찾음</td><td>MultiProvider가 MaterialApp <i>안</i>에 위치</td><td>MultiProvider를 <b>위로</b> 이동</td></tr>
+    <tr><td>홈 진입 시 권한 API 오류</td><td><code>location</code> 패키지 웹 미지원</td><td><code>geolocator</code>로 교체</td></tr>
+    <tr><td>실제 카페 검색 실패</td><td>레거시 PlacesService 신규고객 불가</td><td>Places API (New) <code>Place.searchNearby</code></td></tr>
+    <tr><td>내 리뷰가 프로필에 없음</td><td>리뷰가 <code>userId:''</code>로 저장</td><td>FirebaseAuth uid 주입 + 활동 기록 생성</td></tr>
+    <tr><td>피드/리뷰 쿼리 실패</td><td>Firestore 복합 인덱스 부재</td><td>복합 인덱스 생성</td></tr>
+  </table>
+</section>
+
+<!-- 14. ADR 요약 (질의응답 준비) -->
+<section class="slide">
+  <span class="kicker">ADR · Q&amp;A</span>
+  <h2>ADR 요약 (의사결정 기록)</h2>
+  <div class="grid2 small">
+    <div class="card"><h3>ADR-1 · 4계층 Clean Architecture</h3>
+      <p><b>결정:</b> Presentation/Application/Domain/Data 분리<br><b>이유:</b> 테스트·확장·유지보수 용이, 의존성 역전</p></div>
+    <div class="card"><h3>ADR-2 · 상태관리 Provider + GetIt</h3>
+      <p><b>결정:</b> ChangeNotifier + DI 컨테이너<br><b>이유:</b> 러닝커브 낮고 규모에 적합, 위젯트리와 분리된 DI</p></div>
+    <div class="card"><h3>ADR-3 · 웹 플랫폼 감지 <code>kIsWeb</code></h3>
+      <p><b>결정:</b> 플랫폼 분기는 kIsWeb<br><b>이유:</b> 기존 트릭은 항상 false → 웹 분기 미동작</p></div>
+    <div class="card"><h3>ADR-4 · 위치 라이브러리 geolocator</h3>
+      <p><b>결정:</b> location → geolocator<br><b>이유:</b> 웹 권한 API 호환성</p></div>
+    <div class="card"><h3>ADR-5 · 카페 데이터 = Google Places (New)</h3>
+      <p><b>결정:</b> Naver(브라우저 CORS 차단) 대신 Places New<br><b>이유:</b> 웹에서 직접 호출 가능, 신규고객 지원</p></div>
+    <div class="card"><h3>ADR-6 · Places 실패 시 Mock 폴백</h3>
+      <p><b>결정:</b> 예외 시 위치 기준 Mock 데이터<br><b>이유:</b> 미설정/장애에도 화면이 비지 않음(견고성)</p></div>
+  </div>
+  <p class="legend">예상 질문: “왜 Naver가 아니라 Google?” / “왜 Provider인가?” / “인덱스는 어떻게 관리?” → 위 ADR로 답변</p>
+</section>
+
+<!-- 15. 성능 최적화 노력 -->
+<section class="slide">
+  <span class="kicker">PERFORMANCE</span>
+  <h2>성능 최적화 노력</h2>
+  <div class="grid2">
+    <div class="card"><h3>렌더링 · 로딩</h3>
+      <ul>
+        <li><b>이미지 캐싱</b> — cached_network_image (placeholder/error)</li>
+        <li><b>스켈레톤 UI</b> — shimmer로 체감 로딩 개선</li>
+        <li><code>const</code> 위젯 적극 사용으로 리빌드 최소화</li>
+      </ul>
+    </div>
+    <div class="card"><h3>데이터 · 네트워크</h3>
+      <ul>
+        <li><b>커서 기반 페이지네이션</b> (Timestamp) — 활동 피드</li>
+        <li><b>Firestore 복합 인덱스</b>로 쿼리 최적화</li>
+        <li><b>Hive 오프라인 캐시</b> (카페 검색 TTL)</li>
+        <li><b>트랜잭션</b>으로 원자적 다중 컬렉션 갱신</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="margin-top:1.2rem;border-left:6px solid var(--ok)">
+    <p class="ok">웹 릴리스 빌드: MaterialIcons 1.6MB→11KB, CupertinoIcons 257KB→1.4KB (트리셰이킹 99% 감소)</p>
+  </div>
+</section>
+
+<!-- 16. 코드 품질 관리 -->
+<section class="slide">
+  <span class="kicker">QUALITY</span>
+  <h2>코드 품질 관리</h2>
+  <div class="grid2">
+    <div class="card"><h3>정적 분석 · 컨벤션</h3>
+      <ul>
+        <li><code>flutter analyze</code> 기반 무경고 유지</li>
+        <li><code>flutter_lints</code> 권장 룰셋 적용</li>
+        <li>레이어별 폴더·네이밍 일관성</li>
+      </ul>
+    </div>
+    <div class="card"><h3>구조적 품질</h3>
+      <ul>
+        <li>의존성 역전 — 도메인은 외부를 모름</li>
+        <li>단일 책임 — UseCase 1기능 단위</li>
+        <li>Entity/Model 분리로 변경 격리</li>
+        <li>조건부 import로 웹/모바일 코드 분리</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid3" style="margin-top:1rem">
+    <div class="stat"><div class="n">104</div><div class="l">Dart 파일</div></div>
+    <div class="stat"><div class="n">~8.2K</div><div class="l">코드 라인</div></div>
+    <div class="stat"><div class="n">16</div><div class="l">UseCase 단위</div></div>
+  </div>
+</section>
+
+<!-- 17. 테스트 결과 -->
+<section class="slide">
+  <span class="kicker">TEST</span>
+  <h2>테스트 결과 (단위 / 통합)</h2>
+  <div class="grid2">
+    <div class="card"><h3>단위 테스트</h3>
+      <p><code>phase3_backend_test.dart</code></p>
+      <ul class="small">
+        <li>Follow/Activity/Comment <b>Entity</b> 생성·copyWith</li>
+        <li><b>Model</b> ↔ JSON 직렬화/역직렬화</li>
+        <li><b>Mapper</b> 도메인 변환 (ActivityType enum 매핑 포함)</li>
+      </ul>
+    </div>
+    <div class="card"><h3>기능/로직 테스트</h3>
+      <p><code>step7_8_feature_test.dart</code></p>
+      <ul class="small">
+        <li>SearchProvider — 빈쿼리/이름/이메일 필터</li>
+        <li>팔로우 토글·카운트 로직</li>
+        <li>활동 피드 정렬·페이지네이션 규칙</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="margin-top:1rem;border-left:6px solid var(--ok)">
+    <h3>실행</h3>
+    <pre><code>flutter test</code></pre>
+    <p class="ok" id="testresult">✓ 단위·로직 테스트 통과 (엔티티/모델/매퍼/Provider 로직 검증)</p>
+    <p class="legend">위젯 스모크 테스트(widget_test.dart) 포함 · 통합 시나리오는 실기기 수동 검증으로 보완</p>
+  </div>
+</section>
+
+<!-- 18. 활용 방안 및 기대 효과 -->
+<section class="slide">
+  <span class="kicker">IMPACT</span>
+  <h2>활용 방안 및 기대 효과</h2>
+  <div class="grid2">
+    <div class="card"><h3>활용 방안</h3>
+      <ul>
+        <li><b>일반 사용자</b> — 내 주변 카페 발견 + 신뢰 리뷰</li>
+        <li><b>카페 탐방가</b> — 방문 기록·팔로워와 큐레이션 공유</li>
+        <li><b>소상공인</b> — 실사용자 리뷰 기반 노출</li>
+      </ul>
+    </div>
+    <div class="card"><h3>기대 효과</h3>
+      <ul>
+        <li>광고가 아닌 <b>사람 기반</b> 추천 신뢰도 향상</li>
+        <li>리뷰·팔로우가 만드는 <b>재방문(리텐션)</b></li>
+        <li>지역 상권 <b>발견성</b> 증가</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="margin-top:1.2rem">
+    <h3>확장 가능성</h3>
+    <div class="pill"><span class="tag">실시간 알림(FCM)</span><span class="tag">소셜 로그인</span><span class="tag">테마/취향 추천</span><span class="tag">사진 업로드</span></div>
+  </div>
+</section>
+
+<!-- 19. 시연 데모 (앱 형태 & 기능) -->
+<section class="slide">
+  <span class="kicker">DEMO · OVERVIEW</span>
+  <h2>시연 데모 — 앱 형태 &amp; 기능</h2>
+  <div class="grid2">
+    <div class="card"><h3>화면 구성 (하단 네비게이션)</h3>
+      <ul>
+        <li>🏠 <b>홈</b> — 지도 + 내 주변 카페 마커</li>
+        <li>🔍 <b>검색</b> — 사용자 검색</li>
+        <li>📰 <b>피드</b> — 팔로잉 활동 타임라인</li>
+        <li>👤 <b>프로필</b> — 내 리뷰 · 활동 · 팔로워</li>
+      </ul>
+    </div>
+    <div class="card"><h3>핵심 기능</h3>
+      <ul>
+        <li>회원가입 / 로그인 (Firebase Auth)</li>
+        <li>실제 카페 검색 (Google Places New)</li>
+        <li>리뷰 작성 · 좋아요 · 댓글</li>
+        <li>팔로우 / 언팔로우 · 활동 피드</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 20. 사용자 시나리오 기반 시연 -->
+<section class="slide">
+  <span class="kicker">DEMO · SCENARIO</span>
+  <h2>사용자 시나리오 기반 시연</h2>
+  <ol class="timeline">
+    <li><b>가입/로그인</b> — 이메일로 가입 → 홈 진입</li>
+    <li><b>발견</b> — 위치 권한 허용 → 지도가 내 위치로 이동, 주변 실제 카페 마커 표시</li>
+    <li><b>탐색</b> — 마커 탭 → 카페 상세 (정보·리뷰)</li>
+    <li><b>기록</b> — 별점·리뷰 작성 → 즉시 목록 반영, 활동 기록 생성</li>
+    <li><b>연결</b> — 다른 사용자 검색 → 팔로우</li>
+    <li><b>소통</b> — 피드에서 팔로잉 활동 확인, 리뷰에 댓글</li>
+    <li><b>회고</b> — 프로필에서 내 리뷰·활동 타임라인 확인</li>
+  </ol>
+</section>
+
+<!-- 21. 임팩트 있는 데모 장면 -->
+<section class="slide">
+  <span class="kicker">DEMO · HIGHLIGHT</span>
+  <h2>임팩트 있는 데모 장면</h2>
+  <div class="grid3">
+    <div class="card"><h3>🎯 “내 위치로 슉”</h3><p>위치 허용 즉시 지도가 <b>내 위치</b>로 애니메이션 이동하며 주변 <b>실제 카페</b>가 마커로 채워짐</p></div>
+    <div class="card"><h3>⭐ “쓰자마자 반영”</h3><p>리뷰 작성 → 카페 상세와 <b>프로필 활동 탭</b>에 즉시 등장 (낙관적 UI)</p></div>
+    <div class="card"><h3>📰 “팔로우의 연결”</h3><p>팔로우한 사용자의 활동이 <b>피드 타임라인</b>에 실시간으로 흐름</p></div>
+  </div>
+  <div class="card" style="margin-top:1.2rem;border-left:6px solid var(--accent)">
+    <p>발표 팁: 위치 허용 → 마커 등장 → 리뷰 작성 → 프로필 활동 반영의 <b>한 흐름</b>을 끊김 없이 보여주면 임팩트가 큽니다.</p>
+  </div>
+</section>
+
+<!-- 22. 마무리 & 향후 발전 방향 -->
+<section class="slide">
+  <span class="kicker">CLOSING</span>
+  <h2>마무리 &amp; 향후 발전 방향</h2>
+  <div class="grid2">
+    <div class="card"><h3>성과 요약</h3>
+      <ul>
+        <li>3개 Phase 완주 — 지도/인증/소셜 풀스택</li>
+        <li>4계층 Clean Architecture로 <b>견고한 구조</b></li>
+        <li>웹·모바일 <b>크로스플랫폼</b> 동작</li>
+        <li>실데이터(Google Places) 연동 + 견고한 폴백</li>
+      </ul>
+    </div>
+    <div class="card"><h3>향후 발전</h3>
+      <ul>
+        <li>FCM 실시간 알림 · 채팅</li>
+        <li>취향 기반 추천(개인화) 고도화</li>
+        <li>Naver 백엔드 프록시(Cloud Functions)로 국내 데이터 보강</li>
+        <li>사진 업로드 · 소셜 로그인</li>
+        <li>Crashlytics · Analytics 운영 모니터링</li>
+      </ul>
+    </div>
+  </div>
+  <h1 style="margin-top:1.4rem;font-size:2.2rem">감사합니다 ☕ &nbsp;<span class="muted small">Q &amp; A</span></h1>
+</section>
+
+</div>
+
+<div class="counter"><span id="cur">1</span> / <span id="total">22</span></div>
+<div class="nav">
+  <button id="prev" aria-label="이전">‹</button>
+  <button id="next" aria-label="다음">›</button>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  const bar=document.getElementById('bar'), cur=document.getElementById('cur'),
+        total=document.getElementById('total');
+  total.textContent=slides.length;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    cur.textContent=i+1;
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    slides[i].scrollTop=0;
+  }
+  document.getElementById('next').onclick=()=>show(i+1);
+  document.getElementById('prev').onclick=()=>show(i-1);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+  });
+  show(0);
+</script>
+</body>
+</html>
